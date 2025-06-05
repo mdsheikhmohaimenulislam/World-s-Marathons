@@ -1,11 +1,11 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
-import { IoIosContact, IoIosContacts } from "react-icons/io";
+import { IoIosContacts } from "react-icons/io";
 
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+// import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 
-import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 
 const NavBar = () => {
   const { logOutHandle, user } = use(AuthContext);
@@ -33,11 +33,8 @@ const NavBar = () => {
     <>
       {user && (
         <>
-          <NavLink className="font-extrabold text-xl" to="/AddPlants">
-            Add Plants
-          </NavLink>
-          <NavLink className="font-extrabold text-xl" to="/MyPlants">
-            My Plants
+          <NavLink className="font-extrabold text-xl" to="/dashboard">
+            Dashboard
           </NavLink>
         </>
       )}
@@ -87,16 +84,10 @@ const NavBar = () => {
                 </button>
               ) : (
                 <>
-                  <Link
-                    to="/login"
-                    className="font-bold text-xl text-black"
-                  >
+                  <Link to="/login" className="font-bold text-xl text-black">
                     Login
                   </Link>
-                  <Link
-                    to="/register"
-                    className="font-bold text-xl text-black"
-                  >
+                  <Link to="/register" className="font-bold text-xl text-black">
                     Register
                   </Link>
                 </>
@@ -116,7 +107,7 @@ const NavBar = () => {
             </div>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden  lg:flex">
           <ul className="menu gap-10 menu-horizontal mr-10 px-1">
             <NavLink className="text-xl font-extrabold" to="/">
               Home
@@ -124,9 +115,10 @@ const NavBar = () => {
             <NavLink className="text-xl font-extrabold" to="/Plant">
               Marathons
             </NavLink>
-            {Links}
+                   {Links}
           </ul>
         </div>
+        
         <div className="flex items-center relative group navbar-end space-x-3">
           {/* User Avatar */}
           {user && user.photoURL ? (
