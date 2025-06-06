@@ -2,5 +2,5 @@
 @plugin "daisyui";
 
 a.active{
-    color: aquamarine;
+    color: rgb(141, 149, 221);
 }

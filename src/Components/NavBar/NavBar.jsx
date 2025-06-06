@@ -139,7 +139,7 @@ const NavBar = () => {
           )}
         </div>
         {/* Auth Button */}
-        <div className="mr-3 hidden md:flex items-center gap-x-4">
+        <div className="  mr-8 hidden md:flex items-center gap-x-4">
           {user ? (
             <Link
               onClick={handleLogOut}

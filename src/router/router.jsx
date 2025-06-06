@@ -5,8 +5,69 @@ import Error from "../Page/Error/Error";
 import Login from "../Page/Login/Login";
 import Register from "../Page/Register/Register";
 import Dashboard from "../Page/Dashboard/Dashboard";
+// import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon";
+import MyMarathonList from "../Page/Dashboard/LeftSidePage/MyMarathonList";
+import MyApplyList from "../Page/Dashboard/LeftSidePage/MyApplyList";
+import PrivateRouter from "../Context/PrivateRouter/PrivateRouter";
+import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon";
+import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome ";
 
 export const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     errorElement: <Error />,
+  //     Component: Root,
+  //     children: [
+  //       {
+  //         index: true,
+  //         path: "/",
+  //         Component: Home,
+  //       },
+  //       {
+  //         path: "/dashboard",
+  //         element: (
+  //           <PrivateRouter>
+  //             {" "}
+  //             <Dashboard />
+  //           </PrivateRouter>
+  //         ),
+  //       },
+  //       {
+  //         path: "/addMarathon",
+  //         element: (
+  //           <PrivateRouter>
+  //             <AddMarathon />
+  //           </PrivateRouter>
+  //         ),
+  //       },
+  //       {
+  //         path: "/myMarathonList",
+  //         element: (
+  //           <PrivateRouter>
+  //             <MyMarathonList />
+  //           </PrivateRouter>
+  //         ),
+  //       },
+  //       {
+  //         path: "/myApplyList",
+  //         element: (
+  //           <PrivateRouter>
+  //             <MyApplyList />
+  //           </PrivateRouter>
+  //         ),
+  //       },
+
+  //       {
+  //         path: "/login",
+  //         Component: Login,
+  //       },
+  //       {
+  //         path: "/register",
+  //         Component: Register,
+  //       },
+  //     ],
+  //   },
+
   {
     path: "/",
     errorElement: <Error />,
@@ -17,17 +78,52 @@ export const router = createBrowserRouter([
         path: "/",
         Component: Home,
       },
-            {
-        path: "/dashboard",
-        Component: Dashboard,
-      },
-            {
+      {
         path: "/login",
         Component: Login,
       },
       {
         path: "/register",
         Component: Register,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRouter>
+            <Dashboard />
+          </PrivateRouter>
+        ),
+        children: [
+          {
+            index: true, // 👈 this is what fixes the "right side empty" issue
+            element: <DashboardHome />,
+          },
+          {
+            path: "/dashboard/addMarathon", // 👈 relative path
+            element: (
+              <PrivateRouter>
+                <AddMarathon />
+              </PrivateRouter>
+            ),
+          },
+          {
+            path: "/dashboard/myMarathonList",
+            element: (
+              <PrivateRouter>
+                <MyMarathonList />
+              </PrivateRouter>
+            ),
+          },
+
+          {
+            path: "/dashboard/myApplyList",
+            element: (
+              <PrivateRouter>
+                <MyApplyList />
+              </PrivateRouter>
+            ),
+          },
+        ],
       },
     ],
   },
