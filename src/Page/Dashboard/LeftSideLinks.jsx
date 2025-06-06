@@ -7,7 +7,7 @@ const LeftSideLinks = () => {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Page content here */}
-        <label htmlFor="my-drawer" className="btn bg-blue-400 text-white drawer-button">
+        <label htmlFor="my-drawer" className="btn px-2 bg-blue-400 text-white drawer-button">
           Click Here
         </label>
       </div>

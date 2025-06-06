@@ -6,11 +6,11 @@ import Login from "../Page/Login/Login";
 import Register from "../Page/Register/Register";
 import Dashboard from "../Page/Dashboard/Dashboard";
 // import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon";
-import MyMarathonList from "../Page/Dashboard/LeftSidePage/MyMarathonList";
-import MyApplyList from "../Page/Dashboard/LeftSidePage/MyApplyList";
+import MyMarathonList from "../Page/Dashboard/LeftSidePage/MyMarathonList/MyMarathonList";
+import MyApplyList from "../Page/Dashboard/LeftSidePage/MyApplyList/MyApplyList";
 import PrivateRouter from "../Context/PrivateRouter/PrivateRouter";
-import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon";
-import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome ";
+import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon/AddMarathon";
+import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/DashboardHome ";
 
 export const router = createBrowserRouter([
   //   {
