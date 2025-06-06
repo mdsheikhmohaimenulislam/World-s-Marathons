@@ -38,6 +38,7 @@ const AddMarathon = () => {
       Location,
       displayName,
       email,
+      createdAt: new Date().toLocaleDateString(),
     };
     console.log(allData);
 
@@ -78,7 +79,6 @@ const AddMarathon = () => {
 
   return (
     <>
-
       <div className="mb-20">
         <section className={` overflow-scroll table mb-20  `}>
           <form
@@ -230,7 +230,6 @@ const AddMarathon = () => {
           </form>
         </section>
       </div>
-  
     </>
   );
 };
