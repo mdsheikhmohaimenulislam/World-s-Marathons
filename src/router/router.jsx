@@ -11,6 +11,7 @@ import MyApplyList from "../Page/Dashboard/LeftSidePage/MyApplyList/MyApplyList"
 import PrivateRouter from "../Context/PrivateRouter/PrivateRouter";
 import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon/AddMarathon";
 import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/DashboardHome ";
+import Marathons from "../Page/Marathons/Marathons";
 
 export const router = createBrowserRouter([
   //   {
@@ -77,6 +78,12 @@ export const router = createBrowserRouter([
         index: true,
         path: "/",
         Component: Home,
+      },
+      {
+        path:"/Marathons",
+        element: <PrivateRouter>
+            <Marathons/>
+        </PrivateRouter>
       },
       {
         path: "/login",

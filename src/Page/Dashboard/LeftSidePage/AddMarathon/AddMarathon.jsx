@@ -40,33 +40,33 @@ const AddMarathon = () => {
       email,
       createdAt: new Date().toLocaleDateString(),
     };
-    console.log(allData);
+   
 
-    // Send Plants to the DB.
-    // fetch("https://mango-server-seven.vercel.app/plants", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(allData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.insertedId) {
-    //       toast.success("Plant Added Successfully", {
-    //         position: "top-right",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: false,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "light",
-    //         transition: Bounce,
-    //       });
-    //       //   form.reset()
-    //     }
-    //   });
+    // Send Marathons to the DB.
+    fetch("http://localhost:5000/marathon", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(allData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Marathon Added Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+          //   form.reset()
+        }
+      });
   };
 
   useEffect(() => {

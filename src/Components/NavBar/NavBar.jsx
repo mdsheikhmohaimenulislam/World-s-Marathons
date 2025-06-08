@@ -112,7 +112,7 @@ const NavBar = () => {
             <NavLink className="text-xl font-extrabold" to="/">
               Home
             </NavLink>
-            <NavLink className="text-xl font-extrabold" to="/Plant">
+            <NavLink className="text-xl font-extrabold" to="/Marathons">
               Marathons
             </NavLink>
                    {Links}
