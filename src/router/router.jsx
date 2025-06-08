@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path:"/Marathons",
+        path:"/allMarathons",
         element: <PrivateRouter>
             <Marathons/>
         </PrivateRouter>
