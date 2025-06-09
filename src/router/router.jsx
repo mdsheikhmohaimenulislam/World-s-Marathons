@@ -12,6 +12,7 @@ import PrivateRouter from "../Context/PrivateRouter/PrivateRouter";
 import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon/AddMarathon";
 import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/DashboardHome ";
 import Marathons from "../Page/Marathons/Marathons";
+import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 
 export const router = createBrowserRouter([
   //   {
@@ -83,6 +84,13 @@ export const router = createBrowserRouter([
         path:"/allMarathons",
         element: <PrivateRouter>
             <Marathons/>
+        </PrivateRouter>
+      },
+      {
+        path:"/marathonDetails/:id",
+        loader:() => fetch("http://localhost:5000/marathon"),
+        element:<PrivateRouter>
+            <MarathonDetails/>
         </PrivateRouter>
       },
       {

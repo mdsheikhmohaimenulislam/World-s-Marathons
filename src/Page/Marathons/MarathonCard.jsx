@@ -1,12 +1,11 @@
 import React from "react";
 import { GoClock } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
 const MarathonCard = ({ marathon }) => {
-  const { photo, name, Location, StartRegistrationDate, EndRegistrationDate } =
+  const { photo, name, Location, _id, StartRegistrationDate, EndRegistrationDate } =
     marathon || {};
-
-  console.log(marathon);
 
   //   date convert
   const StartRegistrationDateConvert = new Date(
@@ -46,9 +45,11 @@ const MarathonCard = ({ marathon }) => {
             </p>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn bg-blue-400 text-white mt-5">
+            <Link to={`/marathonDetails/${_id}`}>
+             <button className="btn bg-blue-400 text-white mt-5">
               See Details
             </button>
+            </Link>
           </div>
         </div>
       </div>
