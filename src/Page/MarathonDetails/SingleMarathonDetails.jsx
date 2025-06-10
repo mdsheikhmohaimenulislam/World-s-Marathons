@@ -54,7 +54,7 @@ const SingleMarathonDetails = ({ marathon }) => {
             are title and actions parts
           </p>
         </div>
-        <div className="flex space-y-2 gap-8 p-5">
+        <div className="md:flex space-y-2 gap-8 md:p-5 pl-5">
           <div className="space-y-2">
             <p className=" flex text-base text-gray-600">
               StartRegistration:

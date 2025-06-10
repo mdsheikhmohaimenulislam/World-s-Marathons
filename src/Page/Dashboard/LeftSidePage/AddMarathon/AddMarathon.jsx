@@ -85,7 +85,7 @@ const AddMarathon = () => {
             onSubmit={handleSubmit}
             className="container overflow-hidden flex flex-col mx-auto space-y-12"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6  rounded-md shadow-sm dark:bg-gray-50">
+            <div className="grid grid-cols-1 gap-6  rounded-md shadow-sm dark:bg-gray-50">
               {/* 1 */}
               <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                 <legend className="fieldset-legend">Marathon Image</legend>

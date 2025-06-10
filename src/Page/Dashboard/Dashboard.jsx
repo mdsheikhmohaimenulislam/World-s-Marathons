@@ -3,11 +3,11 @@ import LeftSideLinks from "./LeftSideLinks";
 
 const Dashboard = () => {
   return (
-    <div className="grid grid-cols-6 gap-10">
-      <div className="col-span-2">
+    <div className=" md:grid md:grid-cols-6 gap-10">
+      <div className="md:col-span-2 mb-8">
         <LeftSideLinks />
       </div>
-      <div className="col-span-4">
+      <div className=" md:col-span-4">
         <Outlet />
       </div>
     </div>
