@@ -1,12 +1,13 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
 import animation from "/public/Animation.json";
+import { Bounce, toast } from "react-toastify";
 // import { Bounce, toast } from "react-toastify";
 
-const TableBody = ({ marathon, handleDeleted }) => {
+const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
   const [runningDistance, setRunningDistance] = useState("");
   const { user } = use(AuthContext);
   const navigate = useNavigate();
@@ -60,17 +61,51 @@ const TableBody = ({ marathon, handleDeleted }) => {
     const form = e.target;
     const formData = new FormData(form);
     const updateMarathons = Object.fromEntries(formData.entries());
-    
-
 
     const allData = {
       ...updateMarathons,
+
       createdAt: new Date().toLocaleDateString(),
     };
-     console.log(allData);
-
+    console.log("Sent Data:", allData);
     // Send update marathon to the db
+    fetch(`http://localhost:5000/marathon/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(allData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          toast.success("Marathon Update Successfully", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+         // Update UI here
+        handleUpdateMarathon(allData);
+            // Optional: close modal
+    document.getElementById("my_modal_6").checked = false;
+    
+// This reloads the entire page
+    window.location.reload();
+        }
+      });
   };
+
+
+    useEffect(() => {
+    document.title = "My Marathon List";
+  }, []);
 
   const handleSelectCare = (value) => {
     setRunningDistance(value);

@@ -19,7 +19,7 @@ const MyMarathonList = () => {
     document.title = "My Marathon List";
   }, [user]);
 
-    // Deleted section
+  // Deleted section
   const handleDeleted = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -58,6 +58,14 @@ const MyMarathonList = () => {
   };
 
 
+  const handleUpdateMarathon = (updatedMarathon) => {
+  const updatedList = marathons.map((marathon) =>
+    marathon._id === updatedMarathon._id ? updatedMarathon : marathon
+  );
+  setMarathons(updatedList);
+};
+
+
   return (
     <>
       <div className="flex justify-center"></div>
@@ -68,7 +76,7 @@ const MyMarathonList = () => {
             <thead>
               <tr>
                 <th>photo</th>
-                <th >Name</th>
+                <th>Name</th>
                 <th>Location</th>
                 <th>Modify Sections</th>
               </tr>
@@ -76,7 +84,12 @@ const MyMarathonList = () => {
             {/* body */}
             <tbody>
               {marathons.map((marathon, index) => (
-                <TableBody key={index} marathon={marathon} handleDeleted={handleDeleted}/>
+                <TableBody
+                  key={index}
+                  marathon={marathon}
+                  handleUpdateMarathon={handleUpdateMarathon}
+                  handleDeleted={handleDeleted}
+                />
               ))}
             </tbody>
           </table>
