@@ -14,7 +14,7 @@ import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/Dashboar
 import Marathons from "../Page/Marathons/Marathons";
 import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
-import UpdateMarathon from "../Page/Dashboard/LeftSidePage/MyMarathonList/UpdateMarathon";
+// import UpdateMarathon from "../Page/Dashboard/LeftSidePage/MyMarathonList/UpdateMarathon";
 
 export const router = createBrowserRouter([
   //   {
