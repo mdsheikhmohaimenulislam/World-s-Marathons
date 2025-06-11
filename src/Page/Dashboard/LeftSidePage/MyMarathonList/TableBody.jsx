@@ -3,10 +3,10 @@ import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router";
 
-const TableBody = ({ marathon , handleDeleted}) => {
-  const { name, photo, Location , _id} = marathon || {};
+const TableBody = ({ marathon, handleDeleted }) => {
+  const { name, photo, Location, _id } = marathon || {};
 
-    const remove = (id) => {
+  const remove = (id) => {
     handleDeleted(id);
   };
 
@@ -22,18 +22,38 @@ const TableBody = ({ marathon , handleDeleted}) => {
         </td>
         <td className="">{name}</td>
         <td>{Location}</td>
-      <td>
-        <div className="card-actions md:flex justify-around">
-          <Link to={`/updatePlant/${_id}`}>
-            <button className="btn btn-dash btn-success">
+        <td>
+          <div className="card-actions md:flex justify-around">
+            <label htmlFor="my_modal_6" className="btn btn-dash btn-success">
               <CiEdit size={20} />
+            </label>
+
+            {/* Put this part before </body> tag */}
+            <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+            <div className="modal" role="dialog">
+              <div className="modal-box">
+
+
+
+
+
+                {/* Close button */}
+                <div className="modal-action">
+                  <label htmlFor="my_modal_6" className="btn">
+                    Close!
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={() => remove(_id)}
+              className="btn btn-dash btn-error"
+            >
+              <MdDelete size={20} />
             </button>
-          </Link>
-          <button onClick={() => remove(_id)} className="btn btn-dash btn-error">
-            <MdDelete size={20} />
-          </button>
-        </div>
-      </td>
+          </div>
+        </td>
       </tr>
     </>
   );

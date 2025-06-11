@@ -14,6 +14,7 @@ import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/Dashboar
 import Marathons from "../Page/Marathons/Marathons";
 import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
+import UpdateMarathon from "../Page/Dashboard/LeftSidePage/MyMarathonList/UpdateMarathon";
 
 export const router = createBrowserRouter([
   //   {
@@ -82,24 +83,30 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path:"/allMarathons",
-        element: <PrivateRouter>
-            <Marathons/>
-        </PrivateRouter>
+        path: "/allMarathons",
+        element: (
+          <PrivateRouter>
+            <Marathons />
+          </PrivateRouter>
+        ),
       },
       {
-        path:"/marathonDetails/:id",
-        loader:() => fetch("http://localhost:5000/marathon"),
-        element:<PrivateRouter>
-            <MarathonDetails/>
-        </PrivateRouter>
+        path: "/marathonDetails/:id",
+        loader: () => fetch("http://localhost:5000/marathon"),
+        element: (
+          <PrivateRouter>
+            <MarathonDetails />
+          </PrivateRouter>
+        ),
       },
       {
-        path:"/registration/:id",
-        loader:() => fetch("http://localhost:5000/marathon"),
-        element:<PrivateRouter>
-            <RegistrationPage/>
-        </PrivateRouter>
+        path: "/registration/:id",
+        loader: () => fetch("http://localhost:5000/marathon"),
+        element: (
+          <PrivateRouter>
+            <RegistrationPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/login",
@@ -118,11 +125,11 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            index: true, // 👈 this is what fixes the "right side empty" issue
+            index: true, //  this is what fixes the "right side empty" issue
             element: <DashboardHome />,
           },
           {
-            path: "/dashboard/addMarathon", // 👈 relative path
+            path: "/dashboard/addMarathon", //  relative path
             element: (
               <PrivateRouter>
                 <AddMarathon />
@@ -137,6 +144,16 @@ export const router = createBrowserRouter([
               </PrivateRouter>
             ),
           },
+        //   {
+        //     path: "/dashboard/updateMarathon/:id",
+        //     element: (
+        //       <PrivateRouter>
+        //         <UpdateMarathon />
+        //       </PrivateRouter>
+        //     ),
+        //     loader: ({ params }) =>
+        //       fetch(`http://localhost:5000/marathon/${params.id}`),
+        //   },
 
           {
             path: "/dashboard/myApplyList",
