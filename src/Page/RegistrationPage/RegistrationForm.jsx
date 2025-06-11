@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Bounce, toast } from "react-toastify";
 
 const RegistrationForm = ({ marathon }) => {
@@ -8,15 +8,16 @@ const RegistrationForm = ({ marathon }) => {
     MarathonStartDate
   ).toLocaleDateString();
 
-  const handleUpdate = (e) => {
+  const handleAdd = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const addMarathon = Object.fromEntries(formData.entries());
-    console.log(addMarathon);
+    // console.log(addMarathon);
+    
 
     // Add registration to the db
-    fetch(`http://localhost:5000/registration`, {
+    fetch(`http://localhost:5000/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,6 +42,11 @@ const RegistrationForm = ({ marathon }) => {
       });
   };
 
+
+    useEffect(() => {
+    document.title = "Registration Form";
+  }, []);
+
   return (
     <div>
       <div>
@@ -49,7 +55,7 @@ const RegistrationForm = ({ marathon }) => {
             Registration Form
           </h1>
           <form
-            onSubmit={handleUpdate}
+            onSubmit={handleAdd}
             className="container flex flex-col mx-auto space-y-12"
           >
             <div className="overflow-x-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-50">
@@ -103,7 +109,9 @@ const RegistrationForm = ({ marathon }) => {
                 <input
                   type="number"
                   name="ContactNumber"
-                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                 pattern="^(\+?88)?01[3-9]\d{8}$"
+                  maxLength={11}
+                  minLength={11}
                   className="input"
                   placeholder="Contact Number"
                 />

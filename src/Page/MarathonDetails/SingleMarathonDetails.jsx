@@ -31,11 +31,24 @@ const SingleMarathonDetails = ({ marathon }) => {
     MarathonStartDate
   ).toLocaleDateString();
 
-  // Registration logic
+  // HoursDate to midnight
+  //   Convert Hours
+  const HoursDate = (start) => {
+    const newHours = new Date(start);
+    newHours.setHours(0, 0, 0, 0);
+    return newHours;
+  };
+
+  // HoursDate current date
   const now = new Date();
+  // now.setHours(0,0,0,0)
+
+  // Registration logic
   const isRegistrationOpen =
-    now >= new Date(StartRegistrationDate) &&
-    now <= new Date(EndRegistrationDate);
+    StartRegistrationDate &&
+    EndRegistrationDate &&
+    HoursDate(now) >= HoursDate(StartRegistrationDate) &&
+    HoursDate(now) <= HoursDate(EndRegistrationDate);
 
   const handleRegisterClick = () => {
     // alert("yes");
@@ -47,14 +60,14 @@ const SingleMarathonDetails = ({ marathon }) => {
         <figure>
           <img src={photo} alt="marathon photo" />
         </figure>
-        <div className="card-body">
+        <div className="card-body md:mx-auto">
           <h2 className=" card-title">{name}</h2>
           <p>
             A card component has a figure, a body part, and inside body there
             are title and actions parts
           </p>
         </div>
-        <div className="md:flex space-y-2 gap-8 md:p-5 pl-5">
+        <div className="md:flex space-y-2 gap-8 md:p-5 pl-5 md:mx-auto">
           <div className="space-y-2">
             <p className=" flex text-base text-gray-600">
               StartRegistration:
@@ -74,6 +87,11 @@ const SingleMarathonDetails = ({ marathon }) => {
               createdAt:
               <GoClock className="mt-1 ml-2 mr-1 text-black font-bold" />
               <span className="text-black font-bold">{createdAt}</span>
+            </p>
+            <p className="flex text-base text-gray-600">
+              Total Registration Count: 
+
+              <span className="text-black font-bold"></span>
             </p>
           </div>
           <div className="space-y-2">
@@ -98,8 +116,9 @@ const SingleMarathonDetails = ({ marathon }) => {
         </div>
         <div className="card-body">
           <div className="card-actions justify-end">
-            <Link to={`/registration/${_id}`}>
-              <button
+            <>
+              <Link
+                to={`/registration/${_id}`}
                 className={`btn ${
                   isRegistrationOpen
                     ? "bg-blue-400"
@@ -109,8 +128,8 @@ const SingleMarathonDetails = ({ marathon }) => {
                 disabled={!isRegistrationOpen}
               >
                 Register
-              </button>
-            </Link>
+              </Link>
+            </>
           </div>
         </div>
       </div>
