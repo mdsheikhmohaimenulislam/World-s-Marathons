@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import { Bounce, toast } from "react-toastify";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const RegistrationForm = ({ marathon }) => {
-  const { name, email, MarathonStartDate } = marathon || {};
+  const { name, MarathonStartDate } = marathon || {};
+  const {user} = use(AuthContext)
+  console.log(user);
 
   const MarathonStartDateConvert = new Date(
     MarathonStartDate
@@ -134,7 +137,7 @@ const RegistrationForm = ({ marathon }) => {
                   readOnly
                   type="email"
                   name="email"
-                  value={email}
+                  value={user?.email || ""}
                   className="input"
                   placeholder="My awesome page"
                 />

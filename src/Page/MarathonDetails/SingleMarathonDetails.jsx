@@ -1,10 +1,11 @@
 import React from "react";
 import { GoClock } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineDirectionsRun } from "react-icons/md";
+import { MdOutlineAccountCircle, MdOutlineDirectionsRun } from "react-icons/md";
 import { Link } from "react-router";
 
-const SingleMarathonDetails = ({ marathon }) => {
+
+const SingleMarathonDetails = ({ marathon ,userRegistration}) => {
   const {
     photo,
     name,
@@ -18,7 +19,7 @@ const SingleMarathonDetails = ({ marathon }) => {
     MarathonStartDate,
   } = marathon || {};
 
-  console.log(marathon);
+  console.log(userRegistration.length);
 
   // Date conversion for display
   const StartRegistrationDateConvert = new Date(
@@ -31,7 +32,7 @@ const SingleMarathonDetails = ({ marathon }) => {
     MarathonStartDate
   ).toLocaleDateString();
 
-  // HoursDate to midnight
+  
   //   Convert Hours
   const HoursDate = (start) => {
     const newHours = new Date(start);
@@ -90,8 +91,8 @@ const SingleMarathonDetails = ({ marathon }) => {
             </p>
             <p className="flex text-base text-gray-600">
               Total Registration Count: 
-
-              <span className="text-black font-bold"></span>
+              <MdOutlineAccountCircle className="mt-1 ml-2 mr-1 text-black font-bold" />
+              <span className="text-black font-bold">{userRegistration.length}</span>
             </p>
           </div>
           <div className="space-y-2">
