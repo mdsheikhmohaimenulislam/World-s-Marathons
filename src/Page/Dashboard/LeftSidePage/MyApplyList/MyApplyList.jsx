@@ -1,7 +1,9 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
-import ApplyTableBody from "./ApplyTableBody";
+
 import Swal from "sweetalert2";
+import ApplyTable from "./ApplyTable";
+
 
 const MyApplyList = () => {
   const { user } = use(AuthContext);
@@ -19,47 +21,43 @@ const MyApplyList = () => {
     document.title = "My Apply List";
   }, [user]);
 
+  // Deleted section
+  const handleDeleted = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      console.log(result);
+      // Start Deleted the marathon
 
-
-    // Deleted section
-    const handleDeleted = (id) => {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        console.log(result);
-        // Start Deleted the marathon
-  
-        if (result.isConfirmed) {
-          fetch(`http://localhost:5000/marathon/${id}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              // console.log(data);
-              if (data.deletedCount) {
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your marathon has been deleted.",
-                  icon: "success",
-                });
-              }
-              // filter section
-            //   const remainingMarathon = applyUser.filter(
-            //     (filterMarathon) => filterMarathon._id !== id
-            //   );
-            //   setApplyUser(remainingMarathon);
-            });
-        }
-      });
-    };
-
-
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/users/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your marathon has been deleted.",
+                icon: "success",
+              });
+            }
+            // filter section
+              const remainingMarathon = applyUser.filter(
+                (filterMarathon) => filterMarathon._id !== id
+              );
+              setApplyUser(remainingMarathon);
+          });
+      }
+    });
+  };
 
   return (
     <>
@@ -82,8 +80,12 @@ const MyApplyList = () => {
             </thead>
             {/* body */}
             <tbody>
-              {applyUser.map((userData,index) => (
-                <ApplyTableBody key={index} handleDeleted={handleDeleted} userData={userData} />
+              {applyUser.map((userData, index) => (
+                <ApplyTable
+                  key={index}
+                  handleDeleted={handleDeleted}
+                  userData={userData}
+                />
               ))}
             </tbody>
           </table>

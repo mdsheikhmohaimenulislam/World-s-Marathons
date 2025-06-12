@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use,  useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
@@ -95,7 +95,7 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
         handleUpdateMarathon(allData);
             // Optional: close modal
     document.getElementById("my_modal_6").checked = false;
-    
+
 // This reloads the entire page
     window.location.reload();
         }
@@ -103,9 +103,7 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
   };
 
 
-    useEffect(() => {
-    document.title = "My Marathon List";
-  }, []);
+
 
   const handleSelectCare = (value) => {
     setRunningDistance(value);

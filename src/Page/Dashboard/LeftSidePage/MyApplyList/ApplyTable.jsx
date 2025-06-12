@@ -4,7 +4,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { Bounce, toast } from "react-toastify";
 
-const ApplyTableBody = ({ userData,handleDeleted }) => {
+const ApplyTable = ({ userData, handleDeleted }) => {
   const { user } = use(AuthContext);
   const {
     displayName,
@@ -22,9 +22,9 @@ const ApplyTableBody = ({ userData,handleDeleted }) => {
     const form = e.target;
     const formData = new FormData(form);
     const updateApply = Object.fromEntries(formData.entries());
-   console.log(updateApply);
+    console.log(updateApply);
 
-     // Send update User Apply to the db
+    // Send update User Apply to the db
     fetch(`http://localhost:5000/users/${_id}`, {
       method: "PUT",
       headers: {
@@ -47,17 +47,19 @@ const ApplyTableBody = ({ userData,handleDeleted }) => {
             theme: "light",
             transition: Bounce,
           });
-         // Update UI here
-        // handleUpdateMarathon(allData);
-            // Optional: close modal
-    document.getElementById("my_modal_6").checked = false;
-    
-// This reloads the entire page
-    window.location.reload();
+          // Update UI here
+          // handleUpdateMarathon(allData);
+          // Optional: close modal
+          document.getElementById("my_modal_6").checked = false;
+
+          // This reloads the entire page
+          window.location.reload();
         }
       });
+  };
 
-
+  const remove = (id) => {
+    handleDeleted(id);
   };
 
   const MarathonStartDate = new Date(
@@ -226,7 +228,7 @@ const ApplyTableBody = ({ userData,handleDeleted }) => {
             </div>
 
             <button
-              //   onClick={() => remove(_id)}
+              onClick={() => remove(_id)}
               className="btn btn-dash btn-error"
             >
               <MdDelete size={20} />
@@ -238,4 +240,4 @@ const ApplyTableBody = ({ userData,handleDeleted }) => {
   );
 };
 
-export default ApplyTableBody;
+export default ApplyTable;
