@@ -19,6 +19,8 @@ const MyMarathonList = () => {
     document.title = "My Marathon List";
   }, [user]);
 
+  console.log(marathons);
+
   // Deleted section
   const handleDeleted = (id) => {
     Swal.fire({
@@ -57,7 +59,7 @@ const MyMarathonList = () => {
     });
   };
 
-
+// Ui update
   const handleUpdateMarathon = (updatedMarathon) => {
   const updatedList = marathons.map((marathon) =>
     marathon._id === updatedMarathon._id ? updatedMarathon : marathon

@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 const RegistrationForm = ({ marathon }) => {
   const { name, MarathonStartDate } = marathon || {};
   const {user} = use(AuthContext)
-  console.log(user);
+  console.log(typeof MarathonStartDate);
 
   const MarathonStartDateConvert = new Date(
     MarathonStartDate
