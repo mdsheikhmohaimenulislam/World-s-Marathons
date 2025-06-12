@@ -29,7 +29,7 @@ const MarathonDetails = () => {
         }
         const data = await res.json();
         setMarathon(data);
-        document.title = "MarathonDetails Details";
+        document.title = "Marathon Details";
       } catch (error) {
         console.error("Error fetching marathon:", error);
         navigate("/not-found");

@@ -12,7 +12,7 @@ const Marathons = () => {
       .then((data) => {
         setMarathons(data);
       });
-    document.title = "All Plants";
+    document.title = "Marathons";
   }, []);
   console.log(marathons);
 
