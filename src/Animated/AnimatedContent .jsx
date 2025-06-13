@@ -1,4 +1,7 @@
-import { useRef, useEffect } from "react";
+
+// Modify Animation section
+
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,7 +11,6 @@ const AnimatedContent = ({
   children,
   distance = 100,
   direction = "vertical",
-  reverse = false,
   duration = 0.8,
   ease = "power3.out",
   initialOpacity = 0,
@@ -25,15 +27,16 @@ const AnimatedContent = ({
     if (!el) return;
 
     const axis = direction === "horizontal" ? "x" : "y";
-    const offset = reverse ? -distance : distance;
-    const startPct = (1 - threshold) * 100;
+    const offset = distance;
 
+    // Initial state before scroll animation
     gsap.set(el, {
       [axis]: offset,
       scale,
       opacity: animateOpacity ? initialOpacity : 1,
     });
 
+    // Scroll animation
     gsap.to(el, {
       [axis]: 0,
       scale: 1,
@@ -44,20 +47,40 @@ const AnimatedContent = ({
       onComplete,
       scrollTrigger: {
         trigger: el,
-        start: `top ${startPct}%`,
+        start: `top ${100 - threshold * 100}%`,
         toggleActions: "play none none none",
         once: true,
       },
     });
 
+    // Hover animation handlers
+    const onMouseEnter = () => {
+      gsap.to(el, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power1.out",
+      });
+    };
+    const onMouseLeave = () => {
+      gsap.to(el, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power1.out",
+      });
+    };
+
+    el.addEventListener("mouseenter", onMouseEnter);
+    el.addEventListener("mouseleave", onMouseLeave);
+
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
       gsap.killTweensOf(el);
+      el.removeEventListener("mouseenter", onMouseEnter);
+      el.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [
     distance,
     direction,
-    reverse,
     duration,
     ease,
     initialOpacity,
@@ -72,3 +95,4 @@ const AnimatedContent = ({
 };
 
 export default AnimatedContent;
+

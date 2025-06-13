@@ -15,10 +15,14 @@ const Home = () => {
       {/* AnimatedContent  */}
 
       <AnimatedContent
-        distance={300}
-        direction="horizontal"
         initialOpacity={0}
-        duration={8}
+  distance={300}
+  duration={8}
+  ease="power2.out"
+        // distance={300}
+        // direction="horizontal"
+        // initialOpacity={0}
+        // duration={8}
       >
         <MarathonSection />
       </AnimatedContent>
