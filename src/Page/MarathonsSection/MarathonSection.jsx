@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SingleMarathonCard from "./SingleMarathonCard";
 
-const MarathonsSection = () => {
 
-      const [marathons, setMarathons] = useState([]);
+const MarathonSection = () => {
 
+  const [marathons, setMarathons] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/new-marathon")
@@ -15,7 +15,7 @@ const MarathonsSection = () => {
     document.title = "Home";
   }, []);
 
-
+ 
   return (
     <div>
       <div className="mt-20 mb-20">
@@ -23,13 +23,13 @@ const MarathonsSection = () => {
           Marathon Section
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-            {
-                marathons.map((marathon , index) => <SingleMarathonCard key={index} marathon={marathon} />)
-            }
+          {marathons.map((marathon, index) => (
+            <SingleMarathonCard key={index} marathon={marathon} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default MarathonsSection;
+export default MarathonSection;

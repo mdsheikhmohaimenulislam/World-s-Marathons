@@ -1,12 +1,13 @@
 import React from 'react';
 import CarouselSection from '../Components/CarouselSection/CarouselSection';
-import MarathonsSection from '../Page/MarathonsSection/MarathonsSection';
+import MarathonSection from '../Page/MarathonsSection/MarathonSection';
+
 
 const Home = () => {
     return (
         <div>
             <CarouselSection/>
-            <MarathonsSection/>
+            <MarathonSection/>
         </div>
     );
 };

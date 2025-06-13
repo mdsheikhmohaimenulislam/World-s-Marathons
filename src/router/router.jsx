@@ -14,7 +14,12 @@ import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/Dashboar
 import Marathons from "../Page/Marathons/Marathons";
 import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
-// import UpdateMarathon from "../Page/Dashboard/LeftSidePage/MyMarathonList/UpdateMarathon";
+import MarathonSection from "../Page/MarathonsSection/MarathonSection";
+import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
+
+
+
+
 
 export const router = createBrowserRouter([
   //   {
@@ -87,6 +92,15 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <Marathons />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/NewMarathon/:id",
+        loader: ({params}) => fetch(`http://localhost:5000/marathon/${params.id}`),
+        element: (
+          <PrivateRouter>
+            <NewMarathonDetails/>
           </PrivateRouter>
         ),
       },

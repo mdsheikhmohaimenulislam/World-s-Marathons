@@ -22,8 +22,8 @@ const SingleMarathonCard = ({ marathon }) => {
           <h2 className="card-title">{name}</h2>
           <p>{Description}</p>
 
-          <div className="text-center btn border-green-600">
-            <Link to={`/NewPlants/${_id}`}>View Details</Link>
+          <div className="text-center btn border-blue-600">
+            <Link to={`/NewMarathon/${_id}`}>View Details</Link>
           </div>
         </div>
       </div>
