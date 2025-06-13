@@ -1,0 +1,34 @@
+[
+  {
+    "distance": "42K",
+    "race_type": "Full Marathon Race",
+    "price": {
+      "early_bird": 500,
+      "normal": 600
+    }
+  },
+  {
+    "distance": "21K",
+    "race_type": "Half Marathon Race",
+    "price": {
+      "early_bird": 300,
+      "normal": 400
+    }
+  },
+  {
+    "distance": "10K",
+    "race_type": "10KM Race",
+    "price": {
+      "early_bird": 200,
+      "normal": 250
+    }
+  },
+  {
+    "distance": "5K",
+    "race_type": "5KM Race",
+    "price": {
+      "early_bird": 100,
+      "normal": 150
+    }
+  }
+]
