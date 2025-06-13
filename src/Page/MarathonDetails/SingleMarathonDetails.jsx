@@ -35,7 +35,7 @@ const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
     MarathonStartDate
   ).toLocaleDateString();
 
-  
+
   //   Convert Hours
   const HoursDate = (start) => {
     const newHours = new Date(start);
