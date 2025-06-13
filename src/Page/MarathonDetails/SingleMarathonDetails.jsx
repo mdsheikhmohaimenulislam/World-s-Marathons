@@ -5,7 +5,7 @@ import { MdOutlineAccountCircle, MdOutlineDirectionsRun } from "react-icons/md";
 import { Link } from "react-router";
 
 
-const SingleMarathonDetails = ({ marathon ,userRegistration}) => {
+const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
   const {
     photo,
     name,
@@ -20,9 +20,9 @@ const SingleMarathonDetails = ({ marathon ,userRegistration}) => {
   } = marathon || {};
 
 
-//! didn't working  email diye filter korta hbe userRegistration.length
 
-  console.log(userRegistration.length);
+
+
 
   // Date conversion for display
   const StartRegistrationDateConvert = new Date(
@@ -94,7 +94,7 @@ const SingleMarathonDetails = ({ marathon ,userRegistration}) => {
             <p className="flex text-base text-gray-600">
               Total Registration Count: 
               <MdOutlineAccountCircle className="mt-1 ml-2 mr-1 text-black font-bold" />
-              <span className="text-black font-bold">{userRegistration.length}</span>
+              <span className="text-black font-bold">{filteredUsers.length}</span>
             </p>
           </div>
           <div className="space-y-2">

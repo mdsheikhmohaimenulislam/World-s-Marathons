@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import SingleMarathonDetails from "./SingleMarathonDetails";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const MarathonDetails = () => {
   const { id } = useParams();
   const [marathon, setMarathon] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userRegistration, setUserRegisTration] = useState([]);
+  const {user} = use(AuthContext)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,15 +44,15 @@ const MarathonDetails = () => {
   }, [id, navigate]);
 
  const filteredUsers = userRegistration.filter(
-  (user) => user._id == id
+  (usersEmail) => usersEmail.email === user.email
 );
 
-console.log(filteredUsers);
+
 
   if (loading)
     return <span className="loading ml-100 loading-ring loading-xl"></span>;
 
-  return <div>{marathon && <SingleMarathonDetails marathon={marathon} userRegistration={userRegistration} />}</div>;
+  return <div>{marathon && <SingleMarathonDetails marathon={marathon} filteredUsers={filteredUsers} />}</div>;
 };
 
 export default MarathonDetails;
