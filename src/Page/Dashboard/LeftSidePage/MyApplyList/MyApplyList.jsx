@@ -4,22 +4,26 @@ import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import ApplyTable from "./ApplyTable";
 
-
 const MyApplyList = () => {
   const { user } = use(AuthContext);
   const [applyUser, setApplyUser] = useState([]);
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        const filterMarathons = data.filter(
-          (applyUsers) => applyUsers.email === user.email
-        );
-        setApplyUser(filterMarathons);
-      });
-    document.title = "My Apply List";
-  }, [user]);
+
+useEffect(() => {
+  const url = search
+    ? `http://localhost:5000/users?searchParams=${search}`
+    : `http://localhost:5000/users`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      const filtered = data.filter((item) => item.email === user.email);
+      setApplyUser(filtered);
+    });
+
+  document.title = "My Apply List";
+}, [user, search]);
 
   // Deleted section
   const handleDeleted = (id) => {
@@ -50,10 +54,10 @@ const MyApplyList = () => {
               });
             }
             // filter section
-              const remainingMarathon = applyUser.filter(
-                (filterMarathon) => filterMarathon._id !== id
-              );
-              setApplyUser(remainingMarathon);
+            const remainingMarathon = applyUser.filter(
+              (filterMarathon) => filterMarathon._id !== id
+            );
+            setApplyUser(remainingMarathon);
           });
       }
     });
@@ -61,10 +65,37 @@ const MyApplyList = () => {
 
   return (
     <>
-      <div className="flex justify-center"></div>
+      <div className="flex justify-center "></div>
       <section>
-        <div className="overflow-x-auto overflow-scroll">
-          <table className={`table mb-20 bg-base-300`}>
+        <div className="flex justify-center">
+          <div className="input  mb-10">
+            <svg
+              className="h-[1em] opacity-50 "
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input
+              name="search"
+              onChange={(e) => setSearch(e.target.value)}
+              type="search"
+              required
+              placeholder="Search"
+            />
+          </div>
+        </div>
+        <div className="overflow-x-auto overflow-scroll mb-30">
+          <table className={`table bg-base-300`}>
             {/* head */}
             <thead>
               <tr>

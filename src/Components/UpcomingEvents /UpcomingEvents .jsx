@@ -76,7 +76,7 @@ const UpcomingEvents = () => {
             {/* Content */}
             <div className="relative h-full flex flex-col justify-center items-center text-white p-6">
               {/* Date Badge */}
-              <div className="flex flex-col lg:block -ml-170 gap-20 hidden ">
+              <div className="flex flex-col lg:block -ml-160 gap-20 hidden ">
                 <div className="bg-white  p-10 bg-opacity-70 rounded-lg w-16 h-16 flex flex-col items-center justify-center mb-4">
                   <div className="text-2xl text-gray-600 font-semibold">
                     {event.month}
