@@ -5,7 +5,7 @@ const TicketList = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
         <p className="text-center mb-2 text-[12px] text-base-350">Tickets</p>
-      <h2 className="text-3xl font-bold mb-5 text-center">Buy Your <span className="bg-blue-300">Early Bird</span> Ticket Now!
+      <h2 className=" text-xl md:text-3xl font-bold mb-5 text-center">Buy Your <span className="bg-blue-300">Early Bird</span> Ticket Now!
 </h2>
 <p className="text-gray-500 text-center gap-10 mx-auto mb-10">Take advantage of our early bird pricing and save on your marathon ticket! Enjoy the benefits of registering early while guaranteeing your participation.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -27,8 +27,8 @@ const TicketList = () => {
   </thead>
   <tbody>
     <tr>
-      <td className="pt-2 pb-5 text-[25px] font-bold text-gray-900">$500</td>
-      <td className="pt-2 pb-5  text-gray-500 text-[20px] line-through">$600</td>
+      <td className="pt-2 pb-5 text-[25px] font-bold text-gray-900">${ticket.price.early_bird}</td>
+      <td className="pt-2 pb-5  text-gray-500 text-[20px] line-through"><s>${ticket.price.normal}</s></td>
     </tr>
     {/* You can map more rows here if needed */}
   </tbody>
