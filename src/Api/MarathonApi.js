@@ -1,10 +1,6 @@
-// export const marathonPromise = () => {
-//     return fetch("http://localhost:5000/marathon").then(res => res.json)
-// }
-
 // For getting ALL marathons
 export const getAllMarathons = () => {
-  return fetch("http://localhost:5000/marathon").then((res) => {
+  return fetch(`${import.meta.env.VITE_API_URL}/marathon`).then((res) => {
     if (!res.ok) {
       throw new Error("Failed to fetch marathons");
     }
@@ -14,7 +10,7 @@ export const getAllMarathons = () => {
 
 // For getting a SINGLE marathon by ID
 export const getMarathonById = (id) => {
-  return fetch(`http://localhost:5000/marathon/${id}`).then((res) => {
+  return fetch(`${import.meta.env.VITE_API_URL}/marathon/${id}`).then((res) => {
     if (!res.ok) {
       throw new Error("Marathon not found");
     }
@@ -25,7 +21,7 @@ export const getMarathonById = (id) => {
 //* User Section
 // For getting a All User
 export const getAllUser = () => {
- return  fetch("http://localhost:5000/users").then((res) => {
+  return fetch(`${import.meta.env.VITE_API_URL}/users`).then((res) => {
     if (!res.ok) {
       throw new Error("Failed to fetch User");
     }

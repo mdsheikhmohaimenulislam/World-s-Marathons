@@ -25,7 +25,7 @@ const ApplyTable = ({ userData, handleDeleted }) => {
     console.log(updateApply);
 
     // Send update User Apply to the db
-    fetch(`http://localhost:5000/users/${_id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/users/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

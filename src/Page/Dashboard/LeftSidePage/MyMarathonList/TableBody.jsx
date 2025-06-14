@@ -69,7 +69,7 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
     };
     console.log("Sent Data:", allData);
     // Send update marathon to the db
-    fetch(`http://localhost:5000/marathon/${_id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/marathon/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

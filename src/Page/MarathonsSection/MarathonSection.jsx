@@ -7,7 +7,7 @@ const MarathonSection = () => {
   const [marathons, setMarathons] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/new-marathon")
+    fetch(`${import.meta.env.VITE_API_URL}/new-marathon`)
       .then((res) => res.json())
       .then((data) => {
         setMarathons(data);

@@ -37,7 +37,7 @@ const MyMarathonList = () => {
       // Start Deleted the marathon
 
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/marathon/${id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/marathon/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

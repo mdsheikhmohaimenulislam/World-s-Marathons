@@ -43,7 +43,7 @@ const AddMarathon = () => {
    
 
     // Send Marathons to the DB.
-    fetch("http://localhost:5000/marathon", {
+    fetch(`${import.meta.env.VITE_API_URL}/marathon`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

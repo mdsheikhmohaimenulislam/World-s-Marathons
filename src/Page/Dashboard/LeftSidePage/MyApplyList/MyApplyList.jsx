@@ -12,8 +12,8 @@ const MyApplyList = () => {
 
 useEffect(() => {
   const url = search
-    ? `http://localhost:5000/users?searchParams=${search}`
-    : `http://localhost:5000/users`;
+    ? `${import.meta.env.VITE_API_URL}/users?searchParams=${search}`
+    : `${import.meta.env.VITE_API_URL}/users`;
 
   fetch(url)
     .then((res) => res.json())
@@ -40,7 +40,7 @@ useEffect(() => {
       // Start Deleted the marathon
 
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
