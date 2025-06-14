@@ -1,6 +1,10 @@
 // For getting ALL marathons
-export const getAllMarathons = () => {
-  return fetch(`${import.meta.env.VITE_API_URL}/marathon`).then((res) => {
+export const getAllMarathons = (accessToken) => {
+  return fetch(`${import.meta.env.VITE_API_URL}/marathon`,{
+    headers:{
+        authorization: `Bearer ${accessToken}`
+    }
+  }).then((res) => {
     if (!res.ok) {
       throw new Error("Failed to fetch marathons");
     }
