@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import SingleMarathonCard from "./SingleMarathonCard";
 
-
 const MarathonSection = () => {
-
   const [marathons, setMarathons] = useState([]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/new-marathon`)
       .then((res) => res.json())
+
       .then((data) => {
         setMarathons(data);
       });
     document.title = "Home";
   }, []);
 
- 
   return (
     <div>
       <div className="mt-20 mb-20">
