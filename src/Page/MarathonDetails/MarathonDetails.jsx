@@ -1,58 +1,63 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router";
 import SingleMarathonDetails from "./SingleMarathonDetails";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import { getAllUser, getMarathonById } from "../../Api/MarathonApi";
 
 const MarathonDetails = () => {
   const { id } = useParams();
   const [marathon, setMarathon] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userRegistration, setUserRegisTration] = useState([]);
-  const {user} = use(AuthContext)
+  const [userRegistration, setUserRegistration] = useState([]);
+  const { user } = useContext(AuthContext); // ✅ Correct hook: useContext
   const navigate = useNavigate();
 
+
+  
   useEffect(() => {
     if (!id) return;
 
     // Fetch all users
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
+    getAllUser()
       .then((data) => {
-        setUserRegisTration(data);
+        setUserRegistration(data);
       });
 
-    const fetchMarathon = async () => {
-      try {
-        const res = await fetch(`http://localhost:5000/marathon/${id}`);
-
-        if (!res.ok) {
-          navigate("/not-found");
-          return;
-        }
-        const data = await res.json();
+    // Use the helper function properly
+    getMarathonById(id)
+      .then((data) => {
         setMarathon(data);
         document.title = "Marathon Details";
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error fetching marathon:", error);
         navigate("/not-found");
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-
-    fetchMarathon();
+      });
   }, [id, navigate]);
 
- const filteredUsers = userRegistration.filter(
-  (usersEmail) => usersEmail.email === user.email
-);
-
-
+  // Filter registered users by current user's email
+  const filteredUsers = userRegistration.filter(
+    (u) => u.email === user?.email
+  );
 
   if (loading)
-    return <span className="loading ml-100 loading-ring loading-xl"></span>;
+    return (
+      <span className="loading ml-100 loading-ring loading-xl"></span>
+    );
 
-  return <div>{marathon && <SingleMarathonDetails marathon={marathon} filteredUsers={filteredUsers} />}</div>;
+  return (
+    <div>
+      {marathon && (
+        <SingleMarathonDetails
+          marathon={marathon}
+          filteredUsers={filteredUsers}
+        />
+      )}
+    </div>
+  );
 };
 
 export default MarathonDetails;

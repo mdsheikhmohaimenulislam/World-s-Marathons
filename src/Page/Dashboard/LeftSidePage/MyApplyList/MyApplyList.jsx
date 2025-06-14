@@ -99,7 +99,7 @@ useEffect(() => {
             {/* head */}
             <thead>
               <tr>
-                <th>Marathon Name</th>
+                <th>Marathon Title</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>

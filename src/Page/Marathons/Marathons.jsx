@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MarathonCard from "./MarathonCard";
+import { getAllMarathons } from "../../Api/MarathonApi";
 
 const Marathons = () => {
   const [marathons, setMarathons] = useState([]);
@@ -7,14 +8,15 @@ const Marathons = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/marathon")
-      .then((res) => res.json())
+
+    // Api to export 
+    getAllMarathons()
       .then((data) => {
         setMarathons(data);
       });
     document.title = "Marathons";
   }, []);
-  console.log(marathons);
+
 
   return (
     <div>

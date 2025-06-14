@@ -16,67 +16,13 @@ import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
 import MarathonSection from "../Page/MarathonsSection/MarathonSection";
 import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
+import { getAllMarathons, getMarathonById } from "../Api/MarathonApi";
 
 
 
 
 
 export const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     errorElement: <Error />,
-  //     Component: Root,
-  //     children: [
-  //       {
-  //         index: true,
-  //         path: "/",
-  //         Component: Home,
-  //       },
-  //       {
-  //         path: "/dashboard",
-  //         element: (
-  //           <PrivateRouter>
-  //             {" "}
-  //             <Dashboard />
-  //           </PrivateRouter>
-  //         ),
-  //       },
-  //       {
-  //         path: "/addMarathon",
-  //         element: (
-  //           <PrivateRouter>
-  //             <AddMarathon />
-  //           </PrivateRouter>
-  //         ),
-  //       },
-  //       {
-  //         path: "/myMarathonList",
-  //         element: (
-  //           <PrivateRouter>
-  //             <MyMarathonList />
-  //           </PrivateRouter>
-  //         ),
-  //       },
-  //       {
-  //         path: "/myApplyList",
-  //         element: (
-  //           <PrivateRouter>
-  //             <MyApplyList />
-  //           </PrivateRouter>
-  //         ),
-  //       },
-
-  //       {
-  //         path: "/login",
-  //         Component: Login,
-  //       },
-  //       {
-  //         path: "/register",
-  //         Component: Register,
-  //       },
-  //     ],
-  //   },
-
   {
     path: "/",
     errorElement: <Error />,
@@ -97,7 +43,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/NewMarathon/:id",
-        loader: ({params}) => fetch(`http://localhost:5000/marathon/${params.id}`),
+      loader: ({ params }) => getMarathonById(params.id),
         element: (
           <PrivateRouter>
             <NewMarathonDetails/>
@@ -106,7 +52,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/marathonDetails/:id",
-        loader: () => fetch("http://localhost:5000/marathon"),
+     loader: () => getAllMarathons(),
         element: (
           <PrivateRouter>
             <MarathonDetails />
@@ -115,7 +61,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/registration/:id",
-        loader: () => fetch("http://localhost:5000/marathon"),
+        loader: () => getAllMarathons(),
         element: (
           <PrivateRouter>
             <RegistrationPage />
@@ -158,16 +104,6 @@ export const router = createBrowserRouter([
               </PrivateRouter>
             ),
           },
-        //   {
-        //     path: "/dashboard/updateMarathon/:id",
-        //     element: (
-        //       <PrivateRouter>
-        //         <UpdateMarathon />
-        //       </PrivateRouter>
-        //     ),
-        //     loader: ({ params }) =>
-        //       fetch(`http://localhost:5000/marathon/${params.id}`),
-        //   },
 
           {
             path: "/dashboard/myApplyList",

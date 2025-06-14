@@ -2,14 +2,15 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
 import TableBody from "./TableBody";
 import Swal from "sweetalert2";
+import { getAllMarathons } from "../../../../Api/MarathonApi";
 
 const MyMarathonList = () => {
   const { user } = use(AuthContext);
   const [marathons, setMarathons] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/marathon")
-      .then((res) => res.json())
+
+    getAllMarathons()
       .then((data) => {
         const filterMarathons = data.filter(
           (marathon) => marathon.email === user.email

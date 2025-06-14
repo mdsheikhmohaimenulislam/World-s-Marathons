@@ -3,41 +3,39 @@ import { GoClock } from 'react-icons/go';
 import { IoLocationOutline } from 'react-icons/io5';
 import { MdOutlineDirectionsRun } from 'react-icons/md';
 import { Link, useNavigate, useParams } from 'react-router';
+import { getMarathonById } from '../../Api/MarathonApi';
+
 
 const NewMarathonDetails = () => {
   const { id } = useParams();
+
   const [marathon, setMarathon] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+console.log(id);
 
   useEffect(() => {
     if (!id) return;
 
-    const fetchMarathon = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:5000/marathon/${id}`
-        );
-
-        if (!res.ok) {
-          navigate("/not-found");
-          return;
-        }
-
-        const data = await res.json();
+    getMarathonById(id)
+      .then((data) => {
         setMarathon(data);
         document.title = "Marathon Details";
-      } catch (error) {
-        console.error("Error fetching marathon:", error);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
         navigate("/not-found");
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
+      });
 
-    fetchMarathon();
   }, [id, navigate]);
+
+
+
+
 
   if (loading)
     return <span className="loading ml-100 loading-ring loading-xl"></span>;
