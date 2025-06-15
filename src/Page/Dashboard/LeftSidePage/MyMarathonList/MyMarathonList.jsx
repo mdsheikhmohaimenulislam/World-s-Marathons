@@ -20,7 +20,7 @@ const MyMarathonList = () => {
     document.title = "My Marathon List";
   }, [user]);
 
-  console.log(marathons);
+  // console.log(marathons);
 
   // Deleted section
   const handleDeleted = (id) => {
@@ -33,7 +33,7 @@ const MyMarathonList = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      console.log(result);
+      // console.log(result);
       // Start Deleted the marathon
 
       if (result.isConfirmed) {

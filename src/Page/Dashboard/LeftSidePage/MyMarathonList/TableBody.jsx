@@ -67,7 +67,7 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
 
       createdAt: new Date().toLocaleDateString(),
     };
-    console.log("Sent Data:", allData);
+    // console.log("Sent Data:", allData);
     // Send update marathon to the db
     fetch(`${import.meta.env.VITE_API_URL}/marathon/${_id}`, {
       method: "PUT",
@@ -78,7 +78,7 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount) {
           toast.success("Marathon Update Successfully", {
             position: "top-right",

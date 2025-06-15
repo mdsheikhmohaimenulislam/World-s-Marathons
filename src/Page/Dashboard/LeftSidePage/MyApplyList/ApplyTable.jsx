@@ -22,7 +22,7 @@ const ApplyTable = ({ userData, handleDeleted }) => {
     const form = e.target;
     const formData = new FormData(form);
     const updateApply = Object.fromEntries(formData.entries());
-    console.log(updateApply);
+    // console.log(updateApply);
 
     // Send update User Apply to the db
     fetch(`${import.meta.env.VITE_API_URL}/users/${_id}`, {
@@ -34,7 +34,7 @@ const ApplyTable = ({ userData, handleDeleted }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount) {
           toast.success("User Apply Update Successfully", {
             position: "top-right",

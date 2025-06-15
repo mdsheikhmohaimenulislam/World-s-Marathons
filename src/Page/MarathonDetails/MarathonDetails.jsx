@@ -14,7 +14,7 @@ const MarathonDetails = () => {
 
 
 
-console.log(userRegistration);
+// console.log(userRegistration);
   
   useEffect(() => {
     if (!id) return;
@@ -22,7 +22,7 @@ console.log(userRegistration);
     // Fetch all users
     getAllUser(user.accessToken,user.email)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setUserRegistration(data);
       });
 
@@ -46,7 +46,7 @@ console.log(userRegistration);
     (u) => u.email === user?.email
   );
 
-  console.log(filteredUsers);
+  // console.log(filteredUsers);
 
   if (loading)
     return (

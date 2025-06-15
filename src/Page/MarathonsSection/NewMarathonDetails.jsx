@@ -13,7 +13,7 @@ const NewMarathonDetails = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-console.log(id);
+// console.log(id);
 
   useEffect(() => {
     if (!id) return;
