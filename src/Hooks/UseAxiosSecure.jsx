@@ -7,14 +7,34 @@ const axiosInstance = axios.create({
 });
 
 const UseAxiosSecure = () => {
-  const { user } = use(AuthContext);
+  const { user, logOutHandle } = use(AuthContext);
 
   axiosInstance.interceptors.request.use((config) => {
     config.headers.authorization = `Bearer ${user.accessToken}`;
     return config;
   });
 
-  return axiosInstance ;
+  //   response Interceptors
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error.status === 401 || error.status === 403) {
+        logOutHandle()
+          .then(() => {
+            console.log("Sign Out User For 401 Status Code");
+          })
+          .then((error) => {
+            console.log(error);
+          });
+      }
+
+      return Promise.reject(error);
+    }
+  );
+
+  return axiosInstance;
 };
 
 export default UseAxiosSecure;

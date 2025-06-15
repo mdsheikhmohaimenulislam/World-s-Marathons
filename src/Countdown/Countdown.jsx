@@ -28,7 +28,7 @@ const Countdown = ({ EndRegistrationDate }) => {
   const remainingTime = endTime - startTime;
 
   if (remainingTime <= 0) {
-    return <div className="text-red-600 font-bold">Registration closed</div>;
+    return <div className="text-red-600 font-bold mt-15 ml-5 md:ml-20 lg:text-center">Registration closed</div>;
   }
 
   const days = Math.ceil(remainingTime / daySeconds);
