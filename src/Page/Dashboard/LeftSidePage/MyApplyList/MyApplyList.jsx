@@ -10,61 +10,23 @@ const MyApplyList = () => {
   const [search, setSearch] = useState("");
   const { getAllUser2 } = UserGetAllUserApi();
 
-  //   ,{
-  //     headers: {
-  //     Authorization: `Bearer ${user?.accessToken}`,
-  //   },
-  // }
-  // `${import.meta.env.VITE_API_URL}/users?email=${user.email}`
+  useEffect(() => {
+    if (!user?.email) return;
 
-//   useEffect(() => {
-//   const url = search
-//     ? `${import.meta.env.VITE_API_URL}/users?searchParams=${search}`
-//     : getAllUser2?.(user?.email);
+    const fetchUsers = async () => {
+      try {
+        const data = await getAllUser2(user.email, search);
+        const filtered = data.filter((item) => item.email === user.email);
+        setApplyUser(filtered);
+      } catch (error) {
+        console.error("Axios error:", error);
+        setApplyUser([]);
+      }
+    };
 
-//   if (!url) {
-//     console.warn("Invalid fetch URL:", url);
-//     return;
-//   }
-
-//   fetch(url)
-//     .then((res) => {
-//       if (!res.ok) throw new Error("Failed to fetch users");
-//       return res.json();
-//     })
-//     .then((data) => {
-//       const filtered = data.filter((item) => item.email === user.email);
-//       setApplyUser(filtered);
-//     })
-//     .catch((error) => {
-//       console.error("Fetch error:", error);
-//       setApplyUser([]);
-//     });
-
-//   document.title = "My Apply List";
-// }, [user, search]);
-
-
-
-
-useEffect(() => {
-  if (!user?.email) return;
-
-  const fetchUsers = async () => {
-    try {
-      const data = await getAllUser2(user.email, search);
-      const filtered = data.filter((item) => item.email === user.email);
-      setApplyUser(filtered);
-    } catch (error) {
-      console.error("Axios error:", error);
-      setApplyUser([]);
-    }
-  };
-
-  fetchUsers();
-}, [user, search]);
-
-
+    document.title = "My Apply List";
+    fetchUsers();
+  }, [user, search]);
 
   const handleDeleted = (id) => {
     Swal.fire({

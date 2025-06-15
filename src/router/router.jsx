@@ -36,9 +36,9 @@ export const router = createBrowserRouter([
       {
         path: "/allMarathons",
         element: (
-          <PrivateRouter>
+         /*  <PrivateRouter> */
             <Marathons />
-          </PrivateRouter>
+         /*  </PrivateRouter> */
         ),
       },
       {
