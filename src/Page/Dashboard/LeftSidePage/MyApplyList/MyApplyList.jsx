@@ -1,31 +1,71 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
-
 import Swal from "sweetalert2";
 import ApplyTable from "./ApplyTable";
+import UserGetAllUserApi from "../../../../Api/UserGetAllUserApi";
 
 const MyApplyList = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext); // Fix here
   const [applyUser, setApplyUser] = useState([]);
   const [search, setSearch] = useState("");
+  const { getAllUser2 } = UserGetAllUserApi();
+
+  //   ,{
+  //     headers: {
+  //     Authorization: `Bearer ${user?.accessToken}`,
+  //   },
+  // }
+  // `${import.meta.env.VITE_API_URL}/users?email=${user.email}`
+
+//   useEffect(() => {
+//   const url = search
+//     ? `${import.meta.env.VITE_API_URL}/users?searchParams=${search}`
+//     : getAllUser2?.(user?.email);
+
+//   if (!url) {
+//     console.warn("Invalid fetch URL:", url);
+//     return;
+//   }
+
+//   fetch(url)
+//     .then((res) => {
+//       if (!res.ok) throw new Error("Failed to fetch users");
+//       return res.json();
+//     })
+//     .then((data) => {
+//       const filtered = data.filter((item) => item.email === user.email);
+//       setApplyUser(filtered);
+//     })
+//     .catch((error) => {
+//       console.error("Fetch error:", error);
+//       setApplyUser([]);
+//     });
+
+//   document.title = "My Apply List";
+// }, [user, search]);
+
+
 
 
 useEffect(() => {
-  const url = search
-    ? `${import.meta.env.VITE_API_URL}/users?searchParams=${search}`
-    : `${import.meta.env.VITE_API_URL}/users`;
+  if (!user?.email) return;
 
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
+  const fetchUsers = async () => {
+    try {
+      const data = await getAllUser2(user.email, search);
       const filtered = data.filter((item) => item.email === user.email);
       setApplyUser(filtered);
-    });
+    } catch (error) {
+      console.error("Axios error:", error);
+      setApplyUser([]);
+    }
+  };
 
-  document.title = "My Apply List";
+  fetchUsers();
 }, [user, search]);
 
-  // Deleted section
+
+
   const handleDeleted = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -36,28 +76,34 @@ useEffect(() => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      console.log(result);
-      // Start Deleted the marathon
-
       if (result.isConfirmed) {
         fetch(`${import.meta.env.VITE_API_URL}/users/${id}`, {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`, // Add auth header here too!
+          },
         })
-          .then((res) => res.json())
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to delete");
+            return res.json();
+          })
           .then((data) => {
-            // console.log(data);
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your marathon has been deleted.",
                 icon: "success",
               });
+              // Remove deleted user from state
+              setApplyUser((prev) => prev.filter((u) => u._id !== id));
             }
-            // filter section
-            const remainingMarathon = applyUser.filter(
-              (filterMarathon) => filterMarathon._id !== id
-            );
-            setApplyUser(remainingMarathon);
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: err.message,
+              icon: "error",
+            });
           });
       }
     });
@@ -68,7 +114,7 @@ useEffect(() => {
       <div className="flex justify-center "></div>
       <section>
         <div className="flex justify-center">
-          <div className="input  mb-10">
+          <div className="input mb-10">
             <svg
               className="h-[1em] opacity-50 "
               xmlns="http://www.w3.org/2000/svg"
@@ -89,14 +135,13 @@ useEffect(() => {
               name="search"
               onChange={(e) => setSearch(e.target.value)}
               type="search"
-              required
+              value={search}
               placeholder="Search"
             />
           </div>
         </div>
         <div className="overflow-x-auto overflow-scroll mb-30">
           <table className={`table bg-base-300`}>
-            {/* head */}
             <thead>
               <tr>
                 <th>Marathon Title</th>
@@ -109,11 +154,10 @@ useEffect(() => {
                 <th>Actions</th>
               </tr>
             </thead>
-            {/* body */}
             <tbody>
-              {applyUser.map((userData, index) => (
+              {applyUser.map((userData) => (
                 <ApplyTable
-                  key={index}
+                  key={userData._id}
                   handleDeleted={handleDeleted}
                   userData={userData}
                 />

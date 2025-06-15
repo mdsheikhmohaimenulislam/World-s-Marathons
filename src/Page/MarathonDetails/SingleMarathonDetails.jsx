@@ -3,9 +3,9 @@ import { GoClock } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineAccountCircle, MdOutlineDirectionsRun } from "react-icons/md";
 import { Link } from "react-router";
+import Countdown from "../../Countdown/Countdown";
 
-
-const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
+const SingleMarathonDetails = ({ marathon, filteredUsers }) => {
   const {
     photo,
     name,
@@ -19,11 +19,6 @@ const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
     MarathonStartDate,
   } = marathon || {};
 
-
-
-
-
-
   // Date conversion for display
   const StartRegistrationDateConvert = new Date(
     StartRegistrationDate
@@ -34,7 +29,6 @@ const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
   const MarathonStartDateConvert = new Date(
     MarathonStartDate
   ).toLocaleDateString();
-
 
   //   Convert Hours
   const HoursDate = (start) => {
@@ -66,9 +60,7 @@ const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
         </figure>
         <div className="card-body md:mx-auto">
           <h2 className=" card-title">{name}</h2>
-          <p>
-            {Description}
-          </p>
+          <p>{Description}</p>
         </div>
         <div className="md:flex space-y-2 gap-8 md:p-5 pl-5 md:mx-auto">
           <div className="space-y-2">
@@ -92,9 +84,11 @@ const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
               <span className="text-black font-bold">{createdAt}</span>
             </p>
             <p className="flex text-base text-gray-600">
-              Total Registration Count: 
+              Total Registration Count:
               <MdOutlineAccountCircle className="mt-1 ml-2 mr-1 text-black font-bold" />
-              <span className="text-black font-bold">{filteredUsers.length}</span>
+              <span className="text-black font-bold">
+                {filteredUsers.length}
+              </span>
             </p>
           </div>
           <div className="space-y-2">
@@ -116,6 +110,9 @@ const SingleMarathonDetails = ({ marathon ,filteredUsers}) => {
               <span className="text-black font-bold">{care}m</span>
             </p>
           </div>
+        </div>
+        <div className="mb-5 -mt-10">
+          <Countdown EndRegistrationDate={EndRegistrationDate} />
         </div>
         <div className="card-body">
           <div className="card-actions justify-end">

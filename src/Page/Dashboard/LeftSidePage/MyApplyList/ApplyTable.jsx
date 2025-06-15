@@ -66,7 +66,7 @@ const ApplyTable = ({ userData, handleDeleted }) => {
     MarathonStartDateConvert
   ).toLocaleDateString();
 
-  console.log(typeof MarathonStartDate);
+
 
   return (
     <>

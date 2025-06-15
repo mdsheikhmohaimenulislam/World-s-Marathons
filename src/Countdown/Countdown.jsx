@@ -1,20 +1,88 @@
-import React from 'react';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import React from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import "../index.css";
 
-const Countdown = () => {
+const minuteSeconds = 60;
+const hourSeconds = 3600;
+const daySeconds = 86400;
+
+const timerProps = {
+  isPlaying: true,
+  size: 120,
+  strokeWidth: 6,
+};
+
+const renderTime = (dimension, time) => (
+  <div className="time-wrapper">
+    <div className="time">{time}</div>
+    <div>{dimension}</div>
+  </div>
+);
+
+const Countdown = ({ EndRegistrationDate }) => {
+  // EndRegistrationDate কে UNIX time সেকেন্ডে রূপান্তর
+  const endTime = Math.floor(new Date(EndRegistrationDate).getTime() / 1000);
+  const startTime = Math.floor(Date.now() / 1000);
+
+  // বাকি সময়
+  const remainingTime = endTime - startTime;
+
+  if (remainingTime <= 0) {
+    return <div className="text-red-600 font-bold">Registration closed</div>;
+  }
+
+  const days = Math.ceil(remainingTime / daySeconds);
+  const daysDuration = days * daySeconds;
+
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+   <div className="App grid grid-cols-2 md:grid-cols-3  gap-4">
+      {/* Days */}
       <CountdownCircleTimer
-        isPlaying
-        duration={10} // countdown time in seconds
-        colors="#00BFFF" // can also use array of colors for gradient
-        onComplete={() => {
-          // Called when timer completes
-          console.log("Countdown finished");
-          return { shouldRepeat: false }; // or true to loop
-        }}
+        {...timerProps}
+        colors="#7E2E84"
+        duration={daysDuration}
+        initialRemainingTime={remainingTime}
       >
-        {({ remainingTime }) => <div>{remainingTime}</div>}
+        {({ elapsedTime, color }) => {
+          const time = Math.floor((daysDuration - elapsedTime) / daySeconds);
+          return <span style={{ color }}>{renderTime("days", time)}</span>;
+        }}
+      </CountdownCircleTimer>
+
+      {/* Hours */}
+      <CountdownCircleTimer
+        {...timerProps}
+        colors="#D14081"
+        duration={daySeconds}
+        initialRemainingTime={remainingTime % daySeconds}
+        onComplete={(totalElapsedTime) => ({
+          shouldRepeat: remainingTime - totalElapsedTime > hourSeconds,
+        })}
+      >
+        {({ elapsedTime, color }) => {
+          const time = Math.floor(
+            ((daySeconds - elapsedTime) % daySeconds) / hourSeconds
+          );
+          return <span style={{ color }}>{renderTime("hours", time)}</span>;
+        }}
+      </CountdownCircleTimer>
+
+      {/* Minutes */}
+      <CountdownCircleTimer
+        {...timerProps}
+        colors="#EF798A"
+        duration={hourSeconds}
+        initialRemainingTime={remainingTime % hourSeconds}
+        onComplete={(totalElapsedTime) => ({
+          shouldRepeat: remainingTime - totalElapsedTime > minuteSeconds,
+        })}
+      >
+        {({ elapsedTime, color }) => {
+          const time = Math.floor(
+            ((hourSeconds - elapsedTime) % hourSeconds) / minuteSeconds
+          );
+          return <span style={{ color }}>{renderTime("minutes", time)}</span>;
+        }}
       </CountdownCircleTimer>
     </div>
   );

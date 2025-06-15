@@ -9,17 +9,20 @@ const MarathonDetails = () => {
   const [marathon, setMarathon] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userRegistration, setUserRegistration] = useState([]);
-  const { user } = useContext(AuthContext); // ✅ Correct hook: useContext
+  const { user } = useContext(AuthContext); //  Correct hook: useContext
   const navigate = useNavigate();
 
 
+
+console.log(userRegistration);
   
   useEffect(() => {
     if (!id) return;
 
     // Fetch all users
-    getAllUser()
+    getAllUser(user.accessToken,user.email)
       .then((data) => {
+        console.log(data);
         setUserRegistration(data);
       });
 
@@ -42,6 +45,8 @@ const MarathonDetails = () => {
   const filteredUsers = userRegistration.filter(
     (u) => u.email === user?.email
   );
+
+  console.log(filteredUsers);
 
   if (loading)
     return (
