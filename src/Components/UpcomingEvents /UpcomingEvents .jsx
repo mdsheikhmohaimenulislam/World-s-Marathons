@@ -76,7 +76,7 @@ const UpcomingEvents = () => {
             {/* Content */}
             <div className="relative h-full flex flex-col justify-center items-center text-white p-6">
               {/* Date Badge */}
-              <div className="flex flex-col lg:block -ml-160 gap-20 hidden ">
+              <div className="flex flex-col md:-ml-90 lg:-ml-200   ">
                 <div className="bg-white  p-10 bg-opacity-70 rounded-lg w-16 h-16 flex flex-col items-center justify-center mb-4">
                   <div className="text-2xl text-gray-600 font-semibold">
                     {event.month}
@@ -93,12 +93,12 @@ const UpcomingEvents = () => {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-center mb-4">{event.description}</p>
+                  <p className="text-center font-bold mb-4">{event.description}</p>
                 </div>
               </div>
 
               {/* Button */}
-              <button className="mt-2 hidden lg:block ml-180 cursor-pointer justify-end bg-blue-400 hover:bg-blue-800 text-black px-5 py-2 rounded-full font-semibold hover:text-white transition">
+              <button className="mt-2  md:ml-100 lg:ml-200 cursor-pointer justify-end bg-blue-400 hover:bg-blue-800 text-black px-5 py-2 rounded-full font-semibold hover:text-white transition">
                 Learn More
               </button>
             </div>

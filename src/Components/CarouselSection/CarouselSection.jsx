@@ -4,8 +4,9 @@ const CarouselSection = () => {
   return (
     <div className="carousel w-full rounded-lg">
 
+
       {/* Slide 1 */}
-      <div id="slide1" className="carousel-item relative w-full">
+      <div id="slide1" className="carousel-item  relative w-full">
         <img
           src="/1.png"
           className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
