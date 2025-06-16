@@ -27,7 +27,7 @@ const MarathonDetails = () => {
       });
 
     // Use the helper function properly
-    getMarathonById(id)
+    getMarathonById(id,user.accessToken)
       .then((data) => {
         setMarathon(data);
         document.title = "Marathon Details";
@@ -39,7 +39,7 @@ const MarathonDetails = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [id, navigate]);
+  }, [id, navigate,user]);
 
   // Filter registered users by current user's email
   const filteredUsers = userRegistration.filter(

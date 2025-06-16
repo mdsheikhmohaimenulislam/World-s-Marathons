@@ -1,17 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import MarathonCard from "./MarathonCard";
 import { getAllMarathons } from "../../Api/MarathonApi";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Marathons = () => {
   const [marathons, setMarathons] = useState([]);
+  const {user} = use(AuthContext);
+
+
 
   useEffect(() => {
-    // Api to export
-    getAllMarathons().then((data) => {
+  if (!user?.accessToken) return; //  Prevents early fetch errors
+
+  getAllMarathons(user.accessToken)
+    .then((data) => {
       setMarathons(data);
+    })
+    .catch((err) => {
+      console.error("Error fetching marathons:", err.message);
     });
-    document.title = "Marathons";
-  }, []);
+
+  document.title = "Marathons";
+}, [user]);
+
+  // useEffect(() => {
+  //   // Api to export
+  //   getAllMarathons(user.accessToken).then((data) => {
+  //     setMarathons(data);
+  //   });
+  //   document.title = "Marathons";
+  // }, [user]);
 
   return (
     <div>

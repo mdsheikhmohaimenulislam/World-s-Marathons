@@ -14,9 +14,10 @@ import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/Dashboar
 import Marathons from "../Page/Marathons/Marathons";
 import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
-import MarathonSection from "../Page/MarathonsSection/MarathonSection";
+//! import MarathonSection from "../Page/MarathonsSection/MarathonSection";
 import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
-import { getAllMarathons, getMarathonById } from "../Api/MarathonApi";
+// import { getMarathonById } from "../Api/MarathonApi";
+// import { AuthContext } from "../Context/AuthContext/AuthContext";
 
 
 
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/NewMarathon/:id",
-      loader: ({ params }) => getMarathonById(params.id),
+      // loader: ({ params }) => getMarathonById(params.id),
         element: (
           <PrivateRouter>
             <NewMarathonDetails/>
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/marathonDetails/:id",
-     loader: () => getAllMarathons(),
+    //  loader: () => getAllMarathons(),
         element: (
           <PrivateRouter>
             <MarathonDetails />
@@ -61,7 +62,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/registration/:id",
-        loader: () => getAllMarathons(),
+        // loader: () => getAllMarathons(),
         element: (
           <PrivateRouter>
             <RegistrationPage />

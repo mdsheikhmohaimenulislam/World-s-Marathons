@@ -8,17 +8,37 @@ const MyMarathonList = () => {
   const { user } = use(AuthContext);
   const [marathons, setMarathons] = useState([]);
 
-  useEffect(() => {
 
-    getAllMarathons()
-      .then((data) => {
-        const filterMarathons = data.filter(
-          (marathon) => marathon.email === user.email
-        );
-        setMarathons(filterMarathons);
-      });
-    document.title = "My Marathon List";
-  }, [user]);
+
+  useEffect(() => {
+  const accessToken = user?.accessToken;
+  if (!accessToken) return;
+
+  getAllMarathons(accessToken)
+    .then((data) => {
+      const filterMarathons = data.filter(
+        (marathon) => marathon.email === user.email
+      );
+      setMarathons(filterMarathons);
+    })
+    .catch((error) => {
+      console.error("Failed to load marathons:", error.message);
+    });
+
+  document.title = "My Marathon List";
+}, [user]);
+
+  // useEffect(() => {
+
+  //   getAllMarathons()
+  //     .then((data) => {
+  //       const filterMarathons = data.filter(
+  //         (marathon) => marathon.email === user.email
+  //       );
+  //       setMarathons(filterMarathons);
+  //     });
+  //   document.title = "My Marathon List";
+  // }, [user]);
 
   // console.log(marathons);
 

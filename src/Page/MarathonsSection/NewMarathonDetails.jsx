@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { GoClock } from 'react-icons/go';
-import { IoLocationOutline } from 'react-icons/io5';
-import { MdOutlineDirectionsRun } from 'react-icons/md';
-import { Link, useNavigate, useParams } from 'react-router';
-import { getMarathonById } from '../../Api/MarathonApi';
-
+import React, { use, useEffect, useState } from "react";
+import { GoClock } from "react-icons/go";
+import { IoLocationOutline } from "react-icons/io5";
+import { MdOutlineDirectionsRun } from "react-icons/md";
+import { Link, useNavigate, useParams } from "react-router";
+import { getMarathonById } from "../../Api/MarathonApi";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const NewMarathonDetails = () => {
   const { id } = useParams();
+
 
   const [marathon, setMarathon] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-// console.log(id);
+  const { user } = use(AuthContext);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id || !user?.accessToken) return;
 
-    getMarathonById(id)
+    const accessToken = user.accessToken;
+
+    console.log("new marathon details", accessToken); // Should not be undefined
+
+    getMarathonById(id, accessToken)
       .then((data) => {
         setMarathon(data);
         document.title = "Marathon Details";
@@ -30,16 +35,10 @@ const NewMarathonDetails = () => {
       .finally(() => {
         setLoading(false);
       });
-
-  }, [id, navigate]);
-
-
-
-
+  }, [id,user]);
 
   if (loading)
     return <span className="loading ml-100 loading-ring loading-xl"></span>;
-
 
   const {
     photo,
@@ -53,9 +52,7 @@ const NewMarathonDetails = () => {
     MarathonStartDate,
   } = marathon || {};
 
-
-
-    // Date conversion for display
+  // Date conversion for display
   const StartRegistrationDateConvert = new Date(
     StartRegistrationDate
   ).toLocaleDateString();
@@ -66,7 +63,7 @@ const NewMarathonDetails = () => {
     MarathonStartDate
   ).toLocaleDateString();
 
-    return (
+  return (
     <div>
       <div className="card w-11/12 mx-auto bg-base-100 shadow-sm mt-20 mb-40">
         <figure>
@@ -74,9 +71,7 @@ const NewMarathonDetails = () => {
         </figure>
         <div className="card-body md:mx-auto">
           <h2 className=" card-title">{name}</h2>
-          <p>
-           {Description}
-          </p>
+          <p>{Description}</p>
         </div>
         <div className="md:flex space-y-2 gap-8 md:p-5 pl-5 md:mx-auto">
           <div className="space-y-2">
@@ -94,8 +89,6 @@ const NewMarathonDetails = () => {
                 {EndRegistrationDateConvert}
               </span>
             </p>
-
-   
           </div>
           <div className="space-y-2">
             <p className="flex  text-base text-gray-600">
@@ -124,7 +117,7 @@ const NewMarathonDetails = () => {
         </Link>
       </div>
     </div>
-    );
+  );
 };
 
 export default NewMarathonDetails;

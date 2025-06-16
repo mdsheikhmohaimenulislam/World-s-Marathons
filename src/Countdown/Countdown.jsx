@@ -20,11 +20,11 @@ const renderTime = (dimension, time) => (
 );
 
 const Countdown = ({ EndRegistrationDate }) => {
-  // EndRegistrationDate কে UNIX time সেকেন্ডে রূপান্তর
+  // EndRegistrationDate  UNIX time 
   const endTime = Math.floor(new Date(EndRegistrationDate).getTime() / 1000);
   const startTime = Math.floor(Date.now() / 1000);
 
-  // বাকি সময়
+
   const remainingTime = endTime - startTime;
 
   if (remainingTime <= 0) {
