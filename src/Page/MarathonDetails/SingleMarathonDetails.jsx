@@ -112,7 +112,7 @@ const SingleMarathonDetails = ({ marathon, filteredUsers }) => {
           </div>
         </div>
         <div className="mb-5 -mt-10">
-          <Countdown EndRegistrationDate={EndRegistrationDate} />
+          <Countdown EndRegistrationDate={EndRegistrationDate} StartRegistrationDate={StartRegistrationDate} />
         </div>
         <div className="card-body">
           <div className="card-actions justify-end">

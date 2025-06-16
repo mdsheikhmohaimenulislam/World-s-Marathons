@@ -20,22 +20,23 @@ const renderTime = (dimension, time) => (
 );
 
 const Countdown = ({ EndRegistrationDate }) => {
-  // EndRegistrationDate  UNIX time 
   const endTime = Math.floor(new Date(EndRegistrationDate).getTime() / 1000);
-  const startTime = Math.floor(Date.now() / 1000);
-
-
-  const remainingTime = endTime - startTime;
+  const currentTime = Math.floor(Date.now() / 1000);
+  const remainingTime = endTime - currentTime;
 
   if (remainingTime <= 0) {
-    return <div className="text-red-600 font-bold mt-15 ml-5 md:ml-20 lg:text-center">Registration closed</div>;
+    return (
+      <div className="text-red-600 font-bold mt-15 ml-5 md:ml-20 lg:text-center">
+        Registration closed
+      </div>
+    );
   }
 
-  const days = Math.ceil(remainingTime / daySeconds);
+  const days = Math.floor(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
 
   return (
-   <div className="App grid grid-cols-2 md:grid-cols-3  gap-4">
+    <div className="App grid grid-cols-2 md:grid-cols-3 gap-4">
       {/* Days */}
       <CountdownCircleTimer
         {...timerProps}

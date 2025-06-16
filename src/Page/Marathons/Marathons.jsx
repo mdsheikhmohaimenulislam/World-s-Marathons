@@ -1,18 +1,18 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MarathonCard from "./MarathonCard";
 import { getAllMarathons } from "../../Api/MarathonApi";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Marathons = () => {
   const [marathons, setMarathons] = useState([]);
-  const {user} = use(AuthContext);
+  // const {user} = use(AuthContext);
 
 
 
   useEffect(() => {
-  if (!user?.accessToken) return; //  Prevents early fetch errors
-
-  getAllMarathons(user.accessToken)
+  // if (!user?.accessToken) return; //  Prevents early fetch errors
+// user.accessToken
+  getAllMarathons()
     .then((data) => {
       setMarathons(data);
     })
@@ -21,7 +21,7 @@ const Marathons = () => {
     });
 
   document.title = "Marathons";
-}, [user]);
+}, []);
 
   // useEffect(() => {
   //   // Api to export

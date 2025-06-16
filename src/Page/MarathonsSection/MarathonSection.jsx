@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState} from "react";
 import SingleMarathonCard from "./SingleMarathonCard";
-import { AuthContext } from "../../Context/AuthContext/AuthContext"; // adjust path if needed
+
 import { getNewMarathon } from "../../Api/MarathonApi";
 
 const MarathonSection = () => {
   const [marathons, setMarathons] = useState([]);
-  const { user } = useContext(AuthContext); // Get token from context
+
 
   useEffect(() => {
-    const accessToken = user?.accessToken;
-    if (!accessToken) return;
-    getNewMarathon(accessToken)
+    // const accessToken = user?.accessToken;
+    // if (!accessToken) return;
+    getNewMarathon()
       .then((data) => {
         setMarathons(data);
       })
@@ -19,7 +19,7 @@ const MarathonSection = () => {
       });
 
     document.title = "Home";
-  }, [user?.accessToken]);
+  }, []);
 
   return (
     <div>
