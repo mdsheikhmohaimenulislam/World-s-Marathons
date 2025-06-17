@@ -14,7 +14,7 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div className="overflow-y-hidden">
       <CarouselSection />
 
       {/* AnimatedContent  */}
