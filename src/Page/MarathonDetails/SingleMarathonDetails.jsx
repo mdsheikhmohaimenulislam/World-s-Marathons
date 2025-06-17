@@ -29,6 +29,7 @@ const SingleMarathonDetails = ({ marathon, filteredUsers }) => {
   const MarathonStartDateConvert = new Date(
     MarathonStartDate
   ).toLocaleDateString();
+  const createdAtDateConvert = new Date(createdAt).toLocaleDateString();
 
   //   Convert Hours
   const HoursDate = (start) => {
@@ -81,7 +82,7 @@ const SingleMarathonDetails = ({ marathon, filteredUsers }) => {
             <p className="flex text-base text-gray-600">
               createdAt:
               <GoClock className="mt-1 ml-2 mr-1 text-black font-bold" />
-              <span className="text-black font-bold">{createdAt}</span>
+              <span className="text-black font-bold">{createdAtDateConvert}</span>
             </p>
             <p className="flex text-base text-gray-600">
               Total Registration Count:
@@ -112,7 +113,10 @@ const SingleMarathonDetails = ({ marathon, filteredUsers }) => {
           </div>
         </div>
         <div className="mb-5 -mt-10">
-          <Countdown EndRegistrationDate={EndRegistrationDate} StartRegistrationDate={StartRegistrationDate} />
+          <Countdown
+            EndRegistrationDate={EndRegistrationDate}
+            StartRegistrationDate={StartRegistrationDate}
+          />
         </div>
         <div className="card-body">
           <div className="card-actions justify-end">
