@@ -21,7 +21,7 @@ const NewMarathonDetails = () => {
 
     const accessToken = user.accessToken;
 
-    console.log("new marathon details", accessToken); // Should not be undefined
+    // console.log("new marathon details", accessToken); // Should not be undefined
 
     getMarathonById(id, accessToken)
       .then((data) => {

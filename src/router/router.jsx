@@ -5,7 +5,6 @@ import Error from "../Page/Error/Error";
 import Login from "../Page/Login/Login";
 import Register from "../Page/Register/Register";
 import Dashboard from "../Page/Dashboard/Dashboard";
-// import AddMarathon from "../Page/Dashboard/LeftSidePage/AddMarathon";
 import MyMarathonList from "../Page/Dashboard/LeftSidePage/MyMarathonList/MyMarathonList";
 import MyApplyList from "../Page/Dashboard/LeftSidePage/MyApplyList/MyApplyList";
 import PrivateRouter from "../Context/PrivateRouter/PrivateRouter";
@@ -14,10 +13,8 @@ import DashboardHome from "../Page/Dashboard/LeftSidePage/DashboardHome/Dashboar
 import Marathons from "../Page/Marathons/Marathons";
 import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
-//! import MarathonSection from "../Page/MarathonsSection/MarathonSection";
 import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
-// import { getMarathonById } from "../Api/MarathonApi";
-// import { AuthContext } from "../Context/AuthContext/AuthContext";
+
 
 
 

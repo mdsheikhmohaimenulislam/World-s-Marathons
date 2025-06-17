@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react"; //  useContext
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import Error2 from "../Error/Error2";
 import RegistrationForm from "./RegistrationForm";

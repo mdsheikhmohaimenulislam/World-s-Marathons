@@ -1,13 +1,4 @@
 // For getting ALL marathons
-// export const getAllMarathons = () => {
-//   return fetch(`${import.meta.env.VITE_API_URL}/marathon`).then((res) => {
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch marathons");
-//     }
-//     return res.json();
-//   });
-// };
-
 export const getAllMarathons = (accessToken) => {
   return fetch(`${import.meta.env.VITE_API_URL}/marathon`, {
     headers: {
@@ -43,7 +34,7 @@ export const getMarathonById = (id, accessToken) => {
 
   return fetch(`${import.meta.env.VITE_API_URL}/marathon/${id}`, {
     headers: {
-      Authorization: `Bearer ${accessToken}`, // Use capital 'A'
+      Authorization: `Bearer ${accessToken}`, 
     },
   }).then((res) => {
     if (!res.ok) {
@@ -54,16 +45,6 @@ export const getMarathonById = (id, accessToken) => {
 };
 
 //* User Section
-// For getting a All User
-// export const getAllUser = () => {
-//   return fetch(`${import.meta.env.VITE_API_URL}/users`).then((res) => {
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch User");
-//     }
-//     return res.json();
-//   });
-// };
-
 export const getAllUser = async (accessToken, email) => {
   const res = await fetch(
     `${import.meta.env.VITE_API_URL}/users?email=${email}`,

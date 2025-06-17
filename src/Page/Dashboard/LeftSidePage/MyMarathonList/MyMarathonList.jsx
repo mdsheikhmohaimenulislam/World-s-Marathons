@@ -8,39 +8,23 @@ const MyMarathonList = () => {
   const { user } = use(AuthContext);
   const [marathons, setMarathons] = useState([]);
 
-
-
   useEffect(() => {
-  const accessToken = user?.accessToken;
-  if (!accessToken) return;
+    const accessToken = user?.accessToken;
+    if (!accessToken) return;
 
-  getAllMarathons(accessToken)
-    .then((data) => {
-      const filterMarathons = data.filter(
-        (marathon) => marathon.email === user.email
-      );
-      setMarathons(filterMarathons);
-    })
-    .catch((error) => {
-      console.error("Failed to load marathons:", error.message);
-    });
+    getAllMarathons(accessToken)
+      .then((data) => {
+        const filterMarathons = data.filter(
+          (marathon) => marathon.email === user.email
+        );
+        setMarathons(filterMarathons);
+      })
+      .catch((error) => {
+        console.error("Failed to load marathons:", error.message);
+      });
 
-  document.title = "My Marathon List";
-}, [user]);
-
-  // useEffect(() => {
-
-  //   getAllMarathons()
-  //     .then((data) => {
-  //       const filterMarathons = data.filter(
-  //         (marathon) => marathon.email === user.email
-  //       );
-  //       setMarathons(filterMarathons);
-  //     });
-  //   document.title = "My Marathon List";
-  // }, [user]);
-
-  // console.log(marathons);
+    document.title = "My Marathon List";
+  }, [user]);
 
   // Deleted section
   const handleDeleted = (id) => {
@@ -80,14 +64,13 @@ const MyMarathonList = () => {
     });
   };
 
-// Ui update
+  // Ui update
   const handleUpdateMarathon = (updatedMarathon) => {
-  const updatedList = marathons.map((marathon) =>
-    marathon._id === updatedMarathon._id ? updatedMarathon : marathon
-  );
-  setMarathons(updatedList);
-};
-
+    const updatedList = marathons.map((marathon) =>
+      marathon._id === updatedMarathon._id ? updatedMarathon : marathon
+    );
+    setMarathons(updatedList);
+  };
 
   return (
     <>

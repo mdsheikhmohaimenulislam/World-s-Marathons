@@ -30,15 +30,8 @@ const TicketList = () => {
       <td className="pt-2 pb-5 text-[25px] font-bold text-gray-900">${ticket.price.early_bird}</td>
       <td className="pt-2 pb-5  text-gray-500 text-[20px] line-through"><s>${ticket.price.normal}</s></td>
     </tr>
-    {/* You can map more rows here if needed */}
   </tbody>
 </table>
-            {/* <p className="text-lg  font-semibold">
-              Early Bird: <span>${ticket.price.early_bird}</span>
-            </p>
-            <p className=" mb-4">
-              Normal: <span className="text-gray-400"><s>${ticket.price.normal}</s></span>
-            </p> */}
             <button className="bg-blue-300 cursor-pointer text-black font-semibold px-4 py-2 rounded-xl hover:bg-blue-500 hover:text-white transition">
               Get Tickets
             </button>
