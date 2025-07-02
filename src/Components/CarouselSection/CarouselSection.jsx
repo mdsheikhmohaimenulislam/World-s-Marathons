@@ -47,22 +47,12 @@ const CarouselSection = () => {
       style={{ backgroundImage: `url(${images[current].url})` }}
     >
       {/* Button on top */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 z-20
-             top-130       
-             md:top-180    
-            
-  "
-      >
+      <div className="absolute hidden lg:block top-100 mt-10 left-1/2 -translate-x-1/2 z-20">
         <button
           onClick={handleButtonClick}
-          className="btn bg-blue-500 text-white px-6 py-2 rounded-full transition
-               hover:bg-blue-600
-               md:px-8 md:py-3
-               lg:px-10 lg:py-4
-    "
+          className="btn bg-blue-500 text-white px-6 py-2 rounded-full  transition"
         >
-          Go to AllMarathons
+          Go to My Marathons
         </button>
       </div>
 
