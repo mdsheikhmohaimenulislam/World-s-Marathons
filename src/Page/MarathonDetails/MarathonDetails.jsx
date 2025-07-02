@@ -50,7 +50,9 @@ const MarathonDetails = () => {
 
   if (loading)
     return (
-      <span className="loading ml-100 loading-ring loading-xl"></span>
+     <div className="content-center items-center mt-50 ml-80">
+       <span className="loading ml-100 loading-ring loading-xl"></span>
+     </div>
     );
 
   return (

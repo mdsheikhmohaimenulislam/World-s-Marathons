@@ -1,6 +1,3 @@
-
-// Modify Animation section
-
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,13 +7,13 @@ gsap.registerPlugin(ScrollTrigger);
 const AnimatedContent = ({
   children,
   distance = 100,
-  direction = "vertical",
+  direction = "vertical", // "horizontal" or "vertical"
   duration = 0.8,
   ease = "power3.out",
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
-  threshold = 0.1,
+  threshold = 0.1, // When to start animation (0.1 = 90% viewport height)
   delay = 0,
   onComplete,
 }) => {
@@ -27,16 +24,15 @@ const AnimatedContent = ({
     if (!el) return;
 
     const axis = direction === "horizontal" ? "x" : "y";
-    const offset = distance;
 
-    // Initial state before scroll animation
+    // Set initial state
     gsap.set(el, {
-      [axis]: offset,
+      [axis]: distance,
       scale,
       opacity: animateOpacity ? initialOpacity : 1,
     });
 
-    // Scroll animation
+    // Animate when scrolled into view
     gsap.to(el, {
       [axis]: 0,
       scale: 1,
@@ -47,13 +43,13 @@ const AnimatedContent = ({
       onComplete,
       scrollTrigger: {
         trigger: el,
-        start: `top ${100 - threshold * 100}%`,
+        start: `top bottom`, // More reliable than percentage
         toggleActions: "play none none none",
         once: true,
       },
     });
 
-    // Hover animation handlers
+    // Optional hover animation
     const onMouseEnter = () => {
       gsap.to(el, {
         scale: 1.05,
@@ -61,6 +57,7 @@ const AnimatedContent = ({
         ease: "power1.out",
       });
     };
+
     const onMouseLeave = () => {
       gsap.to(el, {
         scale: 1,
@@ -73,8 +70,9 @@ const AnimatedContent = ({
     el.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      ScrollTrigger.killTweensOf(el);
       gsap.killTweensOf(el);
+      ScrollTrigger.getAll().forEach((t) => t.kill());
       el.removeEventListener("mouseenter", onMouseEnter);
       el.removeEventListener("mouseleave", onMouseLeave);
     };
@@ -91,8 +89,11 @@ const AnimatedContent = ({
     onComplete,
   ]);
 
-  return <div ref={ref}>{children}</div>;
+  return (
+    <div ref={ref} className="will-change-transform">
+      {children}
+    </div>
+  );
 };
 
 export default AnimatedContent;
-

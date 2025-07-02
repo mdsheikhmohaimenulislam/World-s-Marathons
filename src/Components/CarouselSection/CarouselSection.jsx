@@ -1,99 +1,92 @@
-import React from "react";
+import { useRef, useState } from "react";
+
+const images = [
+  {
+    url: "/1.webp",
+    title: "FUNDRAISING MARATHON",
+  },
+  {
+    url: "/2.jpg",
+    title: " YOUR RUNNING EQUIPMENT",
+  },
+  {
+    url: "/3.jpg",
+    title: "CONQUER THE MILES",
+  },
+  {
+    url: "/4.jpg",
+    title: "TOGETHER TOWARD PROGRESS",
+  },
+  {
+    url: "/5.jpg",
+    title: "Forward Together Marathon",
+  },
+];
 
 const CarouselSection = () => {
+  const [current, setCurrent] = useState(0);
+  const carouselRef = useRef(null);
+
+  const handlePrev = () => {
+    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  // Button click: page redirect (DOM full reload)
+  const handleButtonClick = () => {
+    window.location.href = "/allMarathons";
+  };
+
   return (
-    <div className="carousel w-full rounded-lg">
-      {/* Slide 1 */}
+    <div
+      ref={carouselRef}
+      className="relative w-full h-screen bg-cover bg-center transition-all duration-700"
+      style={{ backgroundImage: `url(${images[current].url})` }}
+    >
+      {/* Button on top */}
       <div
-        id="slide1"
-        style={{
-          backgroundImage: `url(./1.png)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="carousel-item  relative w-full"
+        className="absolute left-1/2 -translate-x-1/2 z-20
+             top-130       
+             md:top-180    
+            
+  "
       >
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <a href="#slide4" className="btn btn-circle">
-            ❮
-          </a>
+        <button
+          onClick={handleButtonClick}
+          className="btn bg-blue-500 text-white px-6 py-2 rounded-full transition
+               hover:bg-blue-600
+               md:px-8 md:py-3
+               lg:px-10 lg:py-4
+    "
+        >
+          Go to AllMarathons
+        </button>
+      </div>
 
-          <a href="#slide2" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-        <h1 className="text-center mt-60 ml-10 md:mt-80 md:ml-30 md:text-4xl lg:mt-100 lg:ml-80 lg:text-5xl text-white font-bold text-xl">
-          FUNDRAISING MARATHON
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">
+        <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-4">
+          {images[current].title}
         </h1>
       </div>
 
-      {/* Slide 2 */}
-      <div
-        id="slide2"
-        style={{
-          backgroundImage: `url(./2.png)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="carousel-item relative w-full"
-      >
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <a href="#slide1" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide3" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-        <h1 className="text-center mt-60 ml-10 md:mt-80 md:ml-30 md:text-4xl lg:mt-100 lg:ml-80 lg:text-5xl text-white font-bold text-xl">
-          YOUR RUNNING <span className="text-blue-400">EQUIPMENT</span>
-        </h1>
-      </div>
-
-      {/* Slide 3 */}
-      <div
-        id="slide3"
-        style={{
-          backgroundImage: `url(./3.png)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="carousel-item relative w-full"
-      >
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <a href="#slide2" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide4" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-        <h1 className="text-center mt-60 ml-10 md:mt-80 md:ml-30 md:text-4xl lg:mt-100 lg:ml-80 lg:text-5xl text-white font-bold text-xl">
-          <span className="text-blue-400">CONQUER</span> THE MILES
-        </h1>
-      </div>
-
-      {/* Slide 4 */}
-      <div
-        id="slide4"
-        style={{
-          backgroundImage: `url(./4.png)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="carousel-item relative w-full"
-      >
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <a href="#slide3" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide1" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-                <h1 className="text-center mt-60 ml-10 md:mt-80 md:ml-30 md:text-4xl lg:mt-100 lg:ml-80 lg:text-5xl text-white font-bold text-xl">
-         TOGETHER TOWARD PROGRESS
-        </h1>
+      {/* Arrows */}
+      <div className="absolute inset-0 flex justify-between items-center px-6">
+        <button
+          onClick={handlePrev}
+          className="btn btn-circle hover:bg-green-600 bg-black/50 text-white border-none"
+        >
+          ❮
+        </button>
+        <button
+          onClick={handleNext}
+          className="btn btn-circle bg-black/50 text-white hover:bg-black/70 border-none"
+        >
+          ❯
+        </button>
       </div>
     </div>
   );

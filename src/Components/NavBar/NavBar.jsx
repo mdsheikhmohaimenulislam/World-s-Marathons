@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 // import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 
-
 const NavBar = () => {
   const { logOutHandle, user } = use(AuthContext);
 
@@ -42,7 +41,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="w-11/12 mx-auto flex justify-between mb-10 p-3">
+    <div className="w-11/12 sticky top-0 z-50 mx-auto flex justify-between bg-white">
       <div className={`navbar shadow-sm `}>
         <div className="navbar-start">
           <div className="dropdown">
@@ -74,6 +73,7 @@ const NavBar = () => {
               <NavLink className="text-xl font-extrabold" to="/allMarathons">
                 Marathons
               </NavLink>
+
               {Links}
               {user ? (
                 <button
@@ -115,10 +115,17 @@ const NavBar = () => {
             <NavLink className="text-xl font-extrabold" to="/allMarathons">
               Marathons
             </NavLink>
-                   {Links}
+            <NavLink className="text-xl font-extrabold" to='/contact'>
+              Contact Us
+            </NavLink>
+            <NavLink className="text-xl font-extrabold" to='/crypto'>
+              Supports
+            </NavLink>
+
+            {Links}
           </ul>
         </div>
-        
+
         <div className="flex items-center relative group navbar-end space-x-3">
           {/* User Avatar */}
           {user && user.photoURL ? (

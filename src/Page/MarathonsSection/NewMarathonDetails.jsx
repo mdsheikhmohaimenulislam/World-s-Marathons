@@ -1,27 +1,23 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GoClock } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineDirectionsRun } from "react-icons/md";
-import { Link, useNavigate, useParams } from "react-router";
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router";
 import { getMarathonById } from "../../Api/MarathonApi";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const NewMarathonDetails = () => {
   const { id } = useParams();
-
-
   const [marathon, setMarathon] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (!id || !user?.accessToken) return;
 
     const accessToken = user.accessToken;
-
-    // console.log("new marathon details", accessToken); // Should not be undefined
 
     getMarathonById(id, accessToken)
       .then((data) => {
@@ -35,10 +31,12 @@ const NewMarathonDetails = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [id,user]);
+  }, [id, user]);
 
   if (loading)
     return <span className="loading ml-100 loading-ring loading-xl"></span>;
+
+  if (!marathon) return null;
 
   const {
     photo,
@@ -46,75 +44,80 @@ const NewMarathonDetails = () => {
     Description,
     Location,
     care,
-
     StartRegistrationDate,
     EndRegistrationDate,
     MarathonStartDate,
-  } = marathon || {};
+  } = marathon;
 
-  // Date conversion for display
-  const StartRegistrationDateConvert = new Date(
-    StartRegistrationDate
-  ).toLocaleDateString();
-  const EndRegistrationDateConvert = new Date(
-    EndRegistrationDate
-  ).toLocaleDateString();
-  const MarathonStartDateConvert = new Date(
-    MarathonStartDate
-  ).toLocaleDateString();
+  // Date conversion
+  const StartDate = new Date(StartRegistrationDate).toLocaleDateString();
+  const EndDate = new Date(EndRegistrationDate).toLocaleDateString();
+  const MarathonDate = new Date(MarathonStartDate).toLocaleDateString();
 
   return (
-    <div>
-      <div className="card w-11/12 mx-auto bg-base-100 shadow-sm mt-20 mb-40">
-        <figure>
-          <img src={photo} alt="marathon photo" />
-        </figure>
-        <div className="card-body md:mx-auto">
-          <h2 className=" card-title">{name}</h2>
-          <p>{Description}</p>
-        </div>
-        <div className="md:flex space-y-2 gap-8 md:p-5 pl-5 md:mx-auto">
-          <div className="space-y-2">
-            <p className=" flex text-base text-gray-600">
-              StartRegistration:
-              <GoClock className="mt-1 ml-2 mr-1 text-black font-bold" />
-              <span className="text-black font-bold">
-                {StartRegistrationDateConvert}
-              </span>
-            </p>
-            <p className="flex text-base text-gray-600">
-              EndRegistration:
-              <GoClock className="mt-1 ml-2 mr-1 text-black font-bold" />
-              <span className="text-black font-bold">
-                {EndRegistrationDateConvert}
-              </span>
-            </p>
-          </div>
-          <div className="space-y-2">
-            <p className="flex  text-base text-gray-600">
-              MarathonStartDate:
-              <GoClock className="mt-1 ml-2 mr-1 text-black font-bold" />
-              <span className="text-black font-bold">
-                {MarathonStartDateConvert}
-              </span>
-            </p>
-            <p className="flex text-base text-gray-600">
-              Location:
-              <IoLocationOutline className="mt-1 ml-2 text-black font-bold" />
-              <span className="text-black font-bold">{Location}</span>
-            </p>
-            <p className="flex text-base text-gray-600">
-              Location:
-              <MdOutlineDirectionsRun className="mt-1 ml-2 text-black font-bold" />
-              <span className="text-black font-bold">{care}m</span>
-            </p>
-          </div>
-        </div>
-        <Link to="/">
-          <button className="btn w-full text-blue-600 border-blue-500">
-            Go to Home
+    <div className="card w-11/12 mx-auto bg-base-100 shadow-sm mt-20 ">
+      {/* Back Button */}
+      <div className="max-w-6xl pt-6 px-4 flex justify-start">
+        <div className="w-full flex justify-start">
+          <button
+            onClick={() => navigate("/")}
+            className="btn text-sm text-white bg-blue-500 flex items-center gap-2"
+          >
+            <FaArrowLeft /> Back Home
           </button>
-        </Link>
+        </div>
+      </div>
+      {/* Details */}
+      <div className="max-w-6xl mx-auto my-6 md:my-10">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
+          {/* Image */}
+          <div className="w-full md:w-1/2 flex justify-center">
+            <img
+              src={photo}
+              alt={name}
+              className="rounded-xl w-full h-96 object-cover shadow-md"
+            />
+          </div>
+
+          {/* Marathon Details */}
+          <div className="w-full md:w-1/2 space-y-4">
+            <h2 className="text-3xl font-bold">{name}</h2>
+
+            <p className="flex items-center gap-2">
+              <IoLocationOutline className="text-xl" />
+              <span className="font-semibold">Location:</span> {Location}
+            </p>
+
+            <p className="flex items-center gap-2">
+              <MdOutlineDirectionsRun className="text-xl" />
+              <span className="font-semibold">Care Level:</span> {care}
+            </p>
+
+            <div className="space-y-1">
+              <p className="flex items-center gap-2">
+                <GoClock className="text-xl" />
+                <span className="font-semibold">Registration Start:</span>{" "}
+                {StartDate}
+              </p>
+              <p className="flex items-center gap-2">
+                <GoClock className="text-xl" />
+                <span className="font-semibold">Registration End:</span>{" "}
+                {EndDate}
+              </p>
+              <p className="flex items-center gap-2">
+                <GoClock className="text-xl" />
+                <span className="font-semibold">Marathon Date:</span>{" "}
+                {MarathonDate}
+              </p>
+            </div>
+
+            {/* Description */}
+            <div className="pt-4 border-t border-gray-300">
+              <h3 className="text-xl font-semibold mb-1">Description:</h3>
+              <p className="leading-relaxed text-gray-700">{Description}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

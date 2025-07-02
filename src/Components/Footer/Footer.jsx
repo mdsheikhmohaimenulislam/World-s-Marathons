@@ -40,7 +40,7 @@ const Footer = () => {
 
   return (
     <div>
-      <footer className={`footer footer-horizontal footer-center text-base-content rounded p-10 bg-base-300`}>
+      <footer className={`footer mt-20 footer-horizontal footer-center text-base-content rounded p-10 bg-base-300`}>
             <div className="flex items-center">
               <img
                 className="-ml-6 md:ml-0 w-[60px] h-[50px]"
@@ -50,9 +50,11 @@ const Footer = () => {
               <h1 className="ml-0 text-2xl font-extrabold">World's Marathons</h1>
             </div>
         <nav className="grid grid-flow-col gap-4">
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Description</a>
+          <a href="/" className="link link-hover">Home</a>
+          <a href="/crypto" className="link link-hover">Supports</a>
+          <a href="/contact" className="link link-hover">Contact Us</a>
+          <a href="http://localhost:5173/allMarathons" className="link link-hover">AllMarathon</a>
+          <a href="http://localhost:5173/dashboard" className="link link-hover">Dashboard</a>
 
         </nav>
         <nav>
@@ -64,11 +66,11 @@ const Footer = () => {
           >
 <FcGoogle size={30} />
           </button>
-            <a>
+            <a href="https://www.youtube.com/" className="cursor-pointer" >
               
               <IoLogoYoutube className="text-red-600" size={30} />
             </a>
-            <a>
+            <a href="https://www.facebook.com/" className="cursor-pointer" >
              <FaFacebook size={30} className="text-blue-600" />
             </a>
           </div>

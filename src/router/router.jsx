@@ -14,6 +14,9 @@ import Marathons from "../Page/Marathons/Marathons";
 import MarathonDetails from "../Page/MarathonDetails/MarathonDetails";
 import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
 import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
+import ContactUs from "../Components/ContactUs/ContactUs";
+import CryptoSection from "../Components/CryptoSectio/CryptoSectio";
+
 
 
 
@@ -30,6 +33,14 @@ export const router = createBrowserRouter([
         index: true,
         path: "/",
         Component: Home,
+      },
+      {
+        path:'/contact',
+        Component:ContactUs
+      },
+      {
+        path:'/crypto',
+        Component:CryptoSection
       },
       {
         path: "/allMarathons",

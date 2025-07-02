@@ -47,7 +47,7 @@ const events = [
 
 const UpcomingEvents = () => {
   return (
-    <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden p-6">
+    <div className="mt-20 bg-white rounded-xl shadow-lg overflow-hidden ">
       {/* Header */}
       <div className="mb-10 text-center">
         <div className="text-gray-500 text-sm font-medium uppercase tracking-widest">
@@ -98,9 +98,9 @@ const UpcomingEvents = () => {
               </div>
 
               {/* Button */}
-              <button className="mt-2  md:ml-100 lg:ml-200 cursor-pointer justify-end bg-blue-400 hover:bg-blue-800 text-black px-5 py-2 rounded-full font-semibold hover:text-white transition">
+              <a href="https://www.worldmarathonmajors.com/" className="mt-2  md:ml-100 lg:ml-200 cursor-pointer justify-end bg-blue-400 hover:bg-blue-800 text-black px-5 py-2 rounded-full font-semibold hover:text-white transition">
                 Learn More
-              </button>
+              </a>
             </div>
           </div>
         ))}

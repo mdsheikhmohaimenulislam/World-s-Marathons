@@ -13,7 +13,7 @@ const SingleMarathonCard = ({ marathon }) => {
   ).toLocaleDateString();
 
   return (
-    <div>
+    <div >
       <Tooltip
         anchorSelect="#my-anchor-element"
         content="Go to the Marathon Section"
@@ -25,19 +25,18 @@ const SingleMarathonCard = ({ marathon }) => {
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
           <p className="flex text-base text-gray-600">
-            Location:
+
             <IoLocationOutline className="mt-1 ml-2 text-black font-bold" />
             <span className="text-black font-bold">{Location}</span>
           </p>
           <p className=" flex text-base text-gray-600">
-            StartRegistration:
             <GoClock className="mt-1 ml-2 mr-1 text-black font-bold" />
             <span className="text-black font-bold">
               {StartRegistrationDateConvert}
             </span>
           </p>
 
-          <div className="text-center btn text-blue-800 border-blue-600">
+          <div className="text-center btn text-blue-500 border-blue-400">
             <Link to={`/NewMarathon/${_id}`}>View Details</Link>
           </div>
         </div>

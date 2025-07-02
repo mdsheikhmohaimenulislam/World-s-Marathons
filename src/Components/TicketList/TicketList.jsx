@@ -3,7 +3,7 @@ import ticketData from "/public/ticketData.json";
 
 const TicketList = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="mt-20">
         <p className="text-center mb-2 text-[12px] text-base-350">Tickets</p>
       <h2 className=" text-xl md:text-3xl font-bold mb-5 text-center">Buy Your <span className="bg-blue-300">Early Bird</span> Ticket Now!
 </h2>
@@ -32,9 +32,9 @@ const TicketList = () => {
     </tr>
   </tbody>
 </table>
-            <button className="bg-blue-300 cursor-pointer text-black font-semibold px-4 py-2 rounded-xl hover:bg-blue-500 hover:text-white transition">
+            <a href="https://www.worldmarathonmajors.com/" className="bg-blue-300 cursor-pointer text-black font-semibold px-4 py-2 rounded-xl hover:bg-blue-500 hover:text-white transition">
               Get Tickets
-            </button>
+            </a>
           </div>
         ))}
       </div>

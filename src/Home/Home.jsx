@@ -2,10 +2,13 @@
 import CarouselSection from "../Components/CarouselSection/CarouselSection";
 import MarathonSection from "../Page/MarathonsSection/MarathonSection";
 import TicketList from "../Components/TicketList/TicketList";
-import CustomerBenefits from "../Components/TrainerSection/TrainerSection";
+// import CustomerBenefits from "../Components/TrainerSection/TrainerSection";
 import TrainerSection from "../Components/TrainerSection/TrainerSection";
 import UpcomingEvents from "../Components/UpcomingEvents /UpcomingEvents ";
-import AnimatedContent from "../Animated/AnimatedContent ";
+// import AnimatedContent from "../Animated/AnimatedContent ";
+import LatestBlog from "../Components/LatestBlog/LatestBlog";
+import HeroSection from "../Components/HeroSection/HeroSection";
+import PromoBanner from "../Components/PromoBanner/PromoBanner";
 
 
 const Home = () => {
@@ -14,51 +17,33 @@ const Home = () => {
 
 
   return (
-    <div className="overflow-y-hidden">
-      <CarouselSection />
+<div className="overflow-y-hidden">
+  <CarouselSection  />
 
-      {/* AnimatedContent  */}
+  {/* <AnimatedContent initialOpacity={0} distance={100} duration={1.5} ease="easeOut"> */}
+    <MarathonSection />
 
-      <AnimatedContent
-        initialOpacity={0}
-  distance={300}
-  duration={8}
-  ease="power2.out"
-        // distance={300}
-        // direction="horizontal"
-        // initialOpacity={0}
-        // duration={8}
-      >
-        <MarathonSection />
-      </AnimatedContent>
-      <AnimatedContent
-        distance={300}
-        direction="horizontal"
-        initialOpacity={0}
-        duration={11}
-      >
-        <UpcomingEvents />
-      </AnimatedContent>
+    <PromoBanner/>
+  {/* </AnimatedContent> */}
 
-      <AnimatedContent
-        distance={300}
-        direction="horizontal"
-        initialOpacity={0}
-        duration={14}
-      >
-        <TrainerSection />
-      </AnimatedContent>
+  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={1.8}> */}
+    <UpcomingEvents />
+  {/* </AnimatedContent> */}
 
-      <AnimatedContent
-        distance={300}
-        direction="horizontal"
-        initialOpacity={0}
-        duration={16}
-      >
-        <TicketList />
-      </AnimatedContent>
-    </div>
+  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2}> */}
+    <TrainerSection />
+
+    <HeroSection/>
+  {/* </AnimatedContent> */}
+<LatestBlog/>
+  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2.2}> */}
+    <TicketList />
+  {/* </AnimatedContent> */}
+</div>
   );
 };
 
 export default Home;
+  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2.2}> */}
+
+  {/* </AnimatedContent> */}
