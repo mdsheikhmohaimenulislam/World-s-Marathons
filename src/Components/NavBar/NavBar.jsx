@@ -41,8 +41,9 @@ const NavBar = () => {
   );
 
   return (
-    <div className="w-11/12 sticky top-0 z-50 mx-auto flex justify-between bg-white">
-      <div className={`navbar shadow-sm `}>
+<div className="bg-white sticky top-0 z-50 shadow-sm ">
+      <div className="w-11/12   mx-auto flex justify-between ">
+      <div className={`navbar `}>
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -173,6 +174,7 @@ const NavBar = () => {
         </div>
       </div>
     </div>
+</div>
   );
 };
 
