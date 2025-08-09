@@ -53,8 +53,8 @@ const Footer = () => {
           <a href="/" className="link link-hover">Home</a>
           <a href="/crypto" className="link link-hover">Supports</a>
           <a href="/contact" className="link link-hover">Contact Us</a>
-          <a href="http://localhost:5173/allMarathons" className="link link-hover">AllMarathon</a>
-          <a href="http://localhost:5173/dashboard" className="link link-hover">Dashboard</a>
+          <a href="/allMarathons" className="link link-hover">AllMarathon</a>
+          <a href="/dashboard" className="link link-hover">Dashboard</a>
 
         </nav>
         <nav>
