@@ -12,9 +12,9 @@ const CryptoSection = () => {
           <h2 className="text-3xl font-semibold text-black">
             SUPPORTS PAYMENTS WITH
           </h2>
-          {/* <h2 className="text-3xl font-semibold text-black">
+          <h2 className="text-3xl font-semibold text-black">
             CRYPTOCURRENCIES
-          </h2> */}
+          </h2>
           <p className="text-gray-600 mt-4">
             Seamless checkout for runners worldwide — now accepting secure
             cryptocurrency payments for all your marathon essentials.
