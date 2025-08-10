@@ -16,6 +16,7 @@ import RegistrationPage from "../Page/RegistrationPage/RegistrationPage";
 import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import CryptoSection from "../Components/CryptoSectio/CryptoSectio";
+import Profile from "../Components/Profile/ProfileCard";
 
 export const router = createBrowserRouter([
   {
@@ -115,6 +116,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyApplyList />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/dashboard/profile",
+        element: (
+          <PrivateRouter>
+            <Profile/>
           </PrivateRouter>
         ),
       },

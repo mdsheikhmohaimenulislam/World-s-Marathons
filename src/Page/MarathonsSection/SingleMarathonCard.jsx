@@ -1,19 +1,22 @@
-import React from "react";
+import React, { use } from "react";
 import { GoClock } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router";
 import { Tooltip } from "react-tooltip";
+import { ThemeContext } from "../../Theme/ThemeContext";
 
 const SingleMarathonCard = ({ marathon }) => {
+  const {theme}=use(ThemeContext)
   const { photo, name, Location, _id, StartRegistrationDate } = marathon || {};
+
 
   // Date conversion for display
   const StartRegistrationDateConvert = new Date(
     StartRegistrationDate
   ).toLocaleDateString();
-
+// ${theme === "dark"? "bg-gray-600" : "bg-base-300"}
   return (
-    <div >
+    <div className={` ${theme === "dark"? "bg-white rounded-md" : "bg-base-300"}`}>
       <Tooltip
         anchorSelect="#my-anchor-element"
         content="Go to the Marathon Section"

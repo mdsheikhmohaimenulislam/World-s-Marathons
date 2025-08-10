@@ -1,4 +1,3 @@
-
 import CarouselSection from "../Components/CarouselSection/CarouselSection";
 import MarathonSection from "../Page/MarathonsSection/MarathonSection";
 import TicketList from "../Components/TicketList/TicketList";
@@ -10,40 +9,39 @@ import LatestBlog from "../Components/LatestBlog/LatestBlog";
 import HeroSection from "../Components/HeroSection/HeroSection";
 import PromoBanner from "../Components/PromoBanner/PromoBanner";
 
-
 const Home = () => {
-
-
-
-
   return (
-<div className="overflow-y-hidden">
-  <CarouselSection  />
+    <div className="overflow-y-hidden">
+      <CarouselSection />
 
-  {/* <AnimatedContent initialOpacity={0} distance={100} duration={1.5} ease="easeOut"> */}
-    <MarathonSection />
+      {/* <AnimatedContent initialOpacity={0} distance={100} duration={1.5} ease="easeOut"> */}
+      <MarathonSection />
 
-    <PromoBanner/>
-  {/* </AnimatedContent> */}
+      <PromoBanner />
+      {/* </AnimatedContent> */}
 
-  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={1.8}> */}
-    <UpcomingEvents />
-  {/* </AnimatedContent> */}
+      {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={1.8}> */}
+      <UpcomingEvents />
+      {/* </AnimatedContent> */}
 
-  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2}> */}
-    <TrainerSection />
+      {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2}> */}
+      <TrainerSection />
 
-    <HeroSection/>
-  {/* </AnimatedContent> */}
-<LatestBlog/>
-  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2.2}> */}
-    <TicketList />
-  {/* </AnimatedContent> */}
-</div>
+      <HeroSection />
+      {/* </AnimatedContent> */}
+      <LatestBlog />
+      {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2.2}> */}
+      <TicketList />
+      {/* </AnimatedContent> */}
+    </div>
   );
 };
 
 export default Home;
-  {/* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2.2}> */}
+{
+  /* <AnimatedContent distance={100} direction="horizontal" initialOpacity={0} duration={2.2}> */
+}
 
-  {/* </AnimatedContent> */}
+{
+  /* </AnimatedContent> */
+}

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { use } from "react";
 import { GoClock } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router";
+import { ThemeContext } from "../../Theme/ThemeContext";
 
 const MarathonCard = ({ marathon }) => {
+const {theme}=use(ThemeContext);
+
   const { photo, name, Location, _id, StartRegistrationDate, MarathonStartDate } = marathon || {};
 
   const formatDate = (date) =>
@@ -13,8 +16,10 @@ const MarathonCard = ({ marathon }) => {
       day: "numeric",
     });
 
+    //${theme === "dark" ? " bg-white" : "bg-base-200"}
+
   return (
-    <tr>
+    <tr className={`${theme === "dark" ? " bg-base-200" : "bg-base-200"}`}>
       {/* Photo */}
       <td>
         <div className="avatar">

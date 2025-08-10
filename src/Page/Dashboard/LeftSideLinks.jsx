@@ -1,20 +1,25 @@
 import { useState } from "react";
-import { GrLogout } from "react-icons/gr";
+
 import { AiOutlineBars } from "react-icons/ai";
 
 import { NavLink } from "react-router";
 import Logo from "../../Components/Logo";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaClipboardList, FaRunning } from "react-icons/fa";
-import LogOut from "../../Components/NavBar/LogOut";
+import Profile from "../../Components/Profile/Profile";
+
+
 
 const LeftSideLinks = () => {
   const [isActive, setIsActive] = useState(false);
+
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setIsActive(!isActive);
   };
+
+
   return (
     <>
       {/* Small Screen Navbar */}
@@ -23,12 +28,16 @@ const LeftSideLinks = () => {
           <Logo />
         </div>
 
-        <button
-          onClick={handleToggle}
-          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
-        >
-          <AiOutlineBars className="h-5 w-5" />
-        </button>
+        <div>
+          <button
+            onClick={handleToggle}
+            className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+          >
+            <AiOutlineBars size={30} />
+          </button>
+
+
+        </div>
       </div>
 
       {/* Sidebar */}
@@ -68,10 +77,7 @@ const LeftSideLinks = () => {
         <div>
           <hr />
 
-          <button className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform">
-            <GrLogout className="w-5 h-5" />
-           <LogOut/>
-          </button>
+          <Profile />
         </div>
       </div>
     </>

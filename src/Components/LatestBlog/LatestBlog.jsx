@@ -32,7 +32,7 @@ const blogs = [
 
 const LatestBlog = () => {
   return (
-    <section className="mt-20 bg-base-100">
+    <section className="mt-20 bg-base-200 p-10">
       <div className="text-center mb-10">
         <h3 className="text-md uppercase font-semibold text-gray-500">Our Blog</h3>
         <h2 className="text-4xl font-bold">

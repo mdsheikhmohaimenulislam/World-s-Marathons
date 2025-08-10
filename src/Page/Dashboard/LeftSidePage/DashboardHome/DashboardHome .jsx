@@ -6,6 +6,8 @@ import { getAllMarathons } from "../../../../Api/MarathonApi";
 import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
 import UserGetAllUserApi from "../../../../Api/UserGetAllUserApi";
 
+
+
 const DashboardHome = () => {
   const [marathons, setMarathons] = useState([]);
   const [myMarathons, setMyMarathon] = useState([]);
@@ -13,6 +15,7 @@ const DashboardHome = () => {
   const [allApplyUser, setAllApplyUser] = useState([]);
   const { user } = useContext(AuthContext);
   const { getAllUser2 } = UserGetAllUserApi();
+
 
   useEffect(() => {
     getAllMarathons()
@@ -54,8 +57,9 @@ const DashboardHome = () => {
     fetchUsers();
   }, [marathons, user?.email]);
 
+
   return (
-    <div>
+    <div >
       <div className="mt-2">
         {/* small cards */}
         <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-grow">
@@ -135,6 +139,7 @@ const DashboardHome = () => {
           {/* Calender */}
           <div className=" relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
             {/* Calender */}
+          
           </div>
         </div>
       </div>

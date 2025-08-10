@@ -79,7 +79,7 @@ const AddMarathon = () => {
   return (
     <>
       <div>
-        <section className={` overflow-scroll table `}>
+        <section className={` overflow-scroll table`}>
           <form
             onSubmit={handleSubmit}
             className="container overflow-hidden flex flex-col mx-auto "

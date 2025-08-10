@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import MarathonCard from "./MarathonCard";
 import { getAllMarathons } from "../../Api/MarathonApi";
+import { ThemeContext } from "../../Theme/ThemeContext";
 
 const Marathons = () => {
   const [marathons, setMarathons] = useState([]);
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const { theme } = use(ThemeContext);
 
   useEffect(() => {
     getAllMarathons()
@@ -24,9 +26,11 @@ const Marathons = () => {
       return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
     });
 
+  // ${theme === "dark"? "bg-gray-600" : "bg-base-300"}
+
   return (
     <>
-      <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 px-4 mt-10">
+      <div className={`${theme === "dark"? "flex flex-col bg-base-200 p-5 rounded-md md:flex-row md:justify-between items-center gap-4 px-4 mt-10" : "flex flex-col  md:flex-row md:justify-between items-center gap-4 px-4 mt-10"}`}>
         {/* Search Input */}
         <div className="flex items-center w-full md:w-1/2 relative">
           <svg
@@ -67,11 +71,11 @@ const Marathons = () => {
       </div>
 
       {/* Table Section */}
-      <section className="mt-6">
+      <section className={` ${theme === "dark "? "mt-6 bg-base-200" : "mt-6"}`}>
         <div className="overflow-x-auto">
           <table className="table table-zebra mb-10">
             <thead>
-              <tr>
+              <tr className={` ${theme === "dark" ? " bg-base-200" : "bg-base-200"}`}>
                 <th>Photo</th>
                 <th>Name</th>
                 <th>Start Registration</th>
@@ -87,7 +91,7 @@ const Marathons = () => {
               {filteredMarathons.length === 0 && (
                 <tr>
                   <td>
-                    <span className="loading ml-30 lg:ml-130 mt-20 loading-ring loading-xl"></span>
+                    <span className={`${theme === "dark" ? " bg-white loading ml-30 lg:ml-130 mt-20 loading-ring loading-xl" : "bg-black loading ml-30 lg:ml-130 mt-20 loading-ring loading-xl"}`}></span>
                   </td>
                 </tr>
               )}

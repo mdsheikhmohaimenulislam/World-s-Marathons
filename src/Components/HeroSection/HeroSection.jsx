@@ -2,8 +2,8 @@ import { Link } from "react-router";
 
 const HeroSection = () => {
   return (
-    <section className="bg-base-100 py-16 px-6 mt-20">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <section className="bg-base-200 py-16 px-6 mt-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center p-10">
         {/* Left Image Block */}
         <div className="relative flex items-center justify-center">
           {/* Rotated Text */}

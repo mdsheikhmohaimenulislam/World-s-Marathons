@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const CryptoSection = () => {
   return (
-    <section className="flex items-center justify-center min-h-screen bg-white">
+    <section className="flex items-center justify-center min-h-screen bg-white mt-20">
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl rounded-xl p-10 bg-base-300  " >
         {/* Text Content */}
         <div className="text-center md:text-left mb-8 md:mb-0">
