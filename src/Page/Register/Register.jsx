@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import ReturnHome from "../../Components/ReturnHome";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -121,6 +122,9 @@ const Register = () => {
     <>
       {/* <NavBar/> */}
       <div className={`mb-10 mt-10  min-h-screen p-10 bg-base-300`}>
+        <div>
+          <ReturnHome/>
+        </div>
         <div className="w-full mx-auto max-w-md p-10 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
           <h1 className="text-2xl font-bold text-center">Register</h1>
           <form onSubmit={registerHandel} className="space-y-6 ">
@@ -170,7 +174,7 @@ const Register = () => {
             </div>
             <button
               type="submit"
-              className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600"
+              className="block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-blue-500"
             >
               Sign in
             </button>
@@ -195,12 +199,13 @@ const Register = () => {
               <FaGithub size={30} />
             </button>
 
-            <button
+            <a
               aria-label="Log in with Twitter"
-              className="p-3 text-blue-500 rounded-sm"
+              className="p-3 text-blue-500 cursor-pointer rounded-sm"
+              href="https://x.com/home"
             >
               <FaTwitter size={30} />
-            </button>
+            </a>
           </div>
           <p className="text-xs text-center sm:px-6 dark:text-gray-600">
             Have an account yet?

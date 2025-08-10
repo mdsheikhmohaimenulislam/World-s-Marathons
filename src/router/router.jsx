@@ -54,9 +54,9 @@ export const router = createBrowserRouter([
         path: "/NewMarathon/:id",
       // loader: ({ params }) => getMarathonById(params.id),
         element: (
-          <PrivateRouter>
+         <PrivateRouter>
             <NewMarathonDetails/>
-          </PrivateRouter>
+         </PrivateRouter>
         ),
       },
       {

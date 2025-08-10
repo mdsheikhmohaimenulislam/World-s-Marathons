@@ -6,6 +6,7 @@ import { Bounce, toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import ReturnHome from "../../Components/ReturnHome";
 
 const Login = () => {
   const { loginHandle, googleHandle, githubLogin } = use(AuthContext);
@@ -120,7 +121,10 @@ const Login = () => {
   return (
     <>
       {/* <NavBar /> */}
-      <div className={`mb-10 p-10 min-h-screen bg-base-300`}>
+      <div className={`mb-10 mt-10 p-10 min-h-screen bg-base-300`}>
+        <div>
+          <ReturnHome/>
+        </div>
         <div className="w-full mx-auto mt-15 max-w-md p-10 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
           <h1 className="text-2xl font-bold text-center">Login</h1>
           <form onSubmit={loginHandleContent} className="space-y-6">
@@ -156,7 +160,7 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600"
+              className="block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-blue-500"
             >
               Login
             </button>

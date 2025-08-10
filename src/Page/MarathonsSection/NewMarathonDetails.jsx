@@ -34,7 +34,7 @@ const NewMarathonDetails = () => {
   }, [id, user]);
 
   if (loading)
-    return <span className="loading ml-100 loading-ring loading-xl"></span>;
+    return <div className="flex justify-center mt-50"><span className="loading loading-ring  loading-xl"></span></div>;
 
   if (!marathon) return null;
 
