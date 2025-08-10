@@ -2,31 +2,14 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { IoIosContacts } from "react-icons/io";
 
-import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import LogOut from "./LogOut";
 // import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 
 const NavBar = () => {
-  const { logOutHandle, user } = use(AuthContext);
+  const {  user } = use(AuthContext);
 
-  //   logOut section
-  const handleLogOut = () => {
-    logOutHandle()
-      .then(() => {})
-      .catch((error) => {
-        console.log(error);
-      });
-    toast.error("Log Out", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+
 
   const Links = (
     <>
@@ -77,12 +60,7 @@ const NavBar = () => {
 
               {Links}
               {user ? (
-                <button
-                  onClick={handleLogOut}
-                  className="font-extrabold text-xl p-2 cursor-pointer"
-                >
-                  Log Out
-                </button>
+<LogOut/>
               ) : (
                 <>
                   <Link to="/login" className="font-bold text-xl text-black">
@@ -149,12 +127,7 @@ const NavBar = () => {
         {/* Auth Button */}
         <div className="  mr-8 hidden md:flex items-center gap-x-4">
           {user ? (
-            <Link
-              onClick={handleLogOut}
-              className="btn bg-blue-400 text-base-100 px-4 py-2"
-            >
-              Log Out
-            </Link>
+<LogOut/>
           ) : (
             <>
               <Link
