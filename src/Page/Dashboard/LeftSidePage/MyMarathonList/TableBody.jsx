@@ -133,11 +133,11 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
               <div className="modal-box">
                 {/* from start */}
 
-                <div className="mb-20">
-                  <section className={` overflow-scroll table mb-20  `}>
+                <div>
+                  <section className={` overflow-scroll table`}>
                     <form
                       onSubmit={handleUpdate}
-                      className="container overflow-hidden flex flex-col mx-auto space-y-12"
+                      className="container overflow-hidden flex flex-col mx-auto "
                     >
                       <div className="grid grid-cols-1 gap-6 mx-auto  rounded-md shadow-sm dark:bg-gray-50">
                         {/* 1 */}
@@ -300,13 +300,13 @@ const TableBody = ({ marathon, handleDeleted, handleUpdateMarathon}) => {
                             placeholder="My awesome page"
                           />
                         </fieldset>
-                      </div>
                       <button
                         type="submit"
-                        className="w-full btn text-2xl p-8 mb-20"
+                        className="btn text-2xl"
                       >
                         Update Marathon
                       </button>
+                      </div>
                     </form>
                   </section>
                 </div>
