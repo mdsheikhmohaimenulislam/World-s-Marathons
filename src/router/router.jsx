@@ -17,12 +17,6 @@ import NewMarathonDetails from "../Page/MarathonsSection/NewMarathonDetails";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import CryptoSection from "../Components/CryptoSectio/CryptoSectio";
 
-
-
-
-
-
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -35,33 +29,33 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path:'/contact',
-        Component:ContactUs
+        path: "/contact",
+        Component: ContactUs,
       },
       {
-        path:'/crypto',
-        Component:CryptoSection
+        path: "/crypto",
+        Component: CryptoSection,
       },
       {
         path: "/allMarathons",
         element: (
-         /*  <PrivateRouter> */
-            <Marathons />
-         /*  </PrivateRouter> */
+          /*  <PrivateRouter> */
+          <Marathons />
+          /*  </PrivateRouter> */
         ),
       },
       {
         path: "/NewMarathon/:id",
-      // loader: ({ params }) => getMarathonById(params.id),
+        // loader: ({ params }) => getMarathonById(params.id),
         element: (
-         <PrivateRouter>
-            <NewMarathonDetails/>
-         </PrivateRouter>
+          <PrivateRouter>
+            <NewMarathonDetails />
+          </PrivateRouter>
         ),
       },
       {
         path: "/marathonDetails/:id",
-    //  loader: () => getAllMarathons(),
+        //  loader: () => getAllMarathons(),
         element: (
           <PrivateRouter>
             <MarathonDetails />
@@ -85,44 +79,44 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRouter>
+        <Dashboard />
+      </PrivateRouter>
+    ),
+    children: [
       {
-        path: "/dashboard",
+        index: true, //  this is what fixes the "right side empty" issue
+        element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/addMarathon", //  relative path
         element: (
           <PrivateRouter>
-            <Dashboard />
+            <AddMarathon />
           </PrivateRouter>
         ),
-        children: [
-          {
-            index: true, //  this is what fixes the "right side empty" issue
-            element: <DashboardHome />,
-          },
-          {
-            path: "/dashboard/addMarathon", //  relative path
-            element: (
-              <PrivateRouter>
-                <AddMarathon />
-              </PrivateRouter>
-            ),
-          },
-          {
-            path: "/dashboard/myMarathonList",
-            element: (
-              <PrivateRouter>
-                <MyMarathonList />
-              </PrivateRouter>
-            ),
-          },
+      },
+      {
+        path: "/dashboard/myMarathonList",
+        element: (
+          <PrivateRouter>
+            <MyMarathonList />
+          </PrivateRouter>
+        ),
+      },
 
-          {
-            path: "/dashboard/myApplyList",
-            element: (
-              <PrivateRouter>
-                <MyApplyList />
-              </PrivateRouter>
-            ),
-          },
-        ],
+      {
+        path: "/dashboard/myApplyList",
+        element: (
+          <PrivateRouter>
+            <MyApplyList />
+          </PrivateRouter>
+        ),
       },
     ],
   },

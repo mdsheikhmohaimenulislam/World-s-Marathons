@@ -58,7 +58,7 @@ const SingleMarathonDetails = ({ marathon, filteredUsers }) => {
                   onClick={() => navigate(-1)}
                   className="btn text-sm text-white bg-blue-400 flex items-center gap-2"
                 >
-                  <FaArrowLeft /> Back Home
+                  <FaArrowLeft /> Back
                 </button>
               </div>
             </div>

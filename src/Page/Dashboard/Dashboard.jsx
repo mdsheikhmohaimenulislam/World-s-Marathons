@@ -9,12 +9,15 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className=" md:grid md:grid-cols-6 gap-10">
-      <div className="md:col-span-2 mb-8 mt-10 z-50">
-        <LeftSideLinks />
-      </div>
-      <div className=" mt-20 md:col-span-4">
-        <Outlet />
+    <div className='relative min-h-screen md:flex bg-white'>
+      {/* Left Side: Sidebar Component */}
+      <LeftSideLinks />
+      {/* Right Side: Dashboard Dynamic Content */}
+      <div className='flex-1  md:ml-64'>
+        <div className='p-10'>
+          {/* Outlet for dynamic contents */}
+          <Outlet />
+        </div>
       </div>
     </div>
   );

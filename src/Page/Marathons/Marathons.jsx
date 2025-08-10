@@ -57,14 +57,13 @@ const Marathons = () => {
         </div>
 
         {/* Sort Button */}
-    
-          <button
-            className="btn  btn-sm btn-outline whitespace-nowrap"
-            onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-          >
-            {sortOrder === "asc" ? "Sort: Ascending" : "Sort: Descending"}
-          </button>
 
+        <button
+          className="btn  btn-sm btn-outline whitespace-nowrap"
+          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+        >
+          {sortOrder === "asc" ? "Sort: Ascending" : "Sort: Descending"}
+        </button>
       </div>
 
       {/* Table Section */}
@@ -87,8 +86,8 @@ const Marathons = () => {
               ))}
               {filteredMarathons.length === 0 && (
                 <tr>
-                  <td colSpan="6" className="text-center text-gray-500 py-10">
-                    No marathons found.
+                  <td>
+                    <span className="loading ml-30 lg:ml-130 mt-20 loading-ring loading-xl"></span>
                   </td>
                 </tr>
               )}

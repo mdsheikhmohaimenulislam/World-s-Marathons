@@ -40,7 +40,6 @@ const AddMarathon = () => {
       email,
       createdAt: new Date().toLocaleDateString(),
     };
-   
 
     // Send Marathons to the DB.
     fetch(`${import.meta.env.VITE_API_URL}/marathon`, {
@@ -79,11 +78,11 @@ const AddMarathon = () => {
 
   return (
     <>
-      <div className="mb-20">
-        <section className={` overflow-scroll table mb-20  `}>
+      <div>
+        <section className={` overflow-scroll table `}>
           <form
             onSubmit={handleSubmit}
-            className="container overflow-hidden flex flex-col mx-auto space-y-12"
+            className="container overflow-hidden flex flex-col mx-auto "
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6  rounded-md shadow-sm dark:bg-gray-50">
               {/* 1 */}
@@ -224,9 +223,9 @@ const AddMarathon = () => {
                 />
               </fieldset>
             </div>
-            <button type="submit" className="w-full btn text-2xl p-8 mb-20">
-              Add Marathons
-            </button>
+              <button type="submit" className=" btn text-2xl w-full">
+                Add Marathons
+              </button>
           </form>
         </section>
       </div>
