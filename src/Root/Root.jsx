@@ -5,8 +5,8 @@ import NavBar from "../Components/NavBar/NavBar";
 import { ThemeContext } from "../Theme/ThemeContext";
 
 const Root = () => {
-  const {theme} = use(ThemeContext)
-
+  const {theme} = use(ThemeContext) 
+ 
   return (
     <div  className={` ${theme === "dark"? "bg-gray-950  " : "bg-white"}`} >
       <NavBar/>
