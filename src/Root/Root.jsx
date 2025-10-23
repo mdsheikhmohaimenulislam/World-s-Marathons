@@ -8,9 +8,9 @@ const Root = () => {
   const {theme} = use(ThemeContext)
 
   return (
-    <div  className={` ${theme === "dark"? "bg-gray-950 " : "bg-white"}`} >
+    <div  className={` ${theme === "dark"? "bg-gray-950  " : "bg-white"}`} >
       <NavBar/>
-      <div className="w-11/12 mx-auto min-h-[calc(100vh-450px)]">
+      <div className=" min-h-[calc(100vh-450px)] max-w-7xl mx-auto ">
         <Outlet />
       </div>
       <Footer />

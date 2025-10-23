@@ -36,9 +36,9 @@ const CarouselSection = () => {
   };
 
   // Button click: page redirect (DOM full reload)
-  const handleButtonClick = () => {
-    window.location.href = "/allMarathons";
-  };
+  // const handleButtonClick = () => {
+  //   window.location.href = "/allMarathons";
+  // };
 
   return (
     <div
@@ -47,14 +47,14 @@ const CarouselSection = () => {
       style={{ backgroundImage: `url(${images[current].url})` }}
     >
       {/* Button on top */}
-      <div className="absolute hidden lg:block top-100 mt-10 left-1/2 -translate-x-1/2 z-20">
+      {/* <div className="absolute hidden lg:block top-100 mt-10 left-1/2 -translate-x-1/2 z-20">
         <button
           onClick={handleButtonClick}
           className="btn bg-blue-500 text-white px-6 py-2 rounded-full  transition"
         >
           Go to My Marathons
         </button>
-      </div>
+      </div> */}
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4">

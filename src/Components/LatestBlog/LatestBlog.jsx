@@ -45,7 +45,7 @@ const LatestBlog = () => {
         {/* Featured blog */}
         <div className="col-span-2 relative rounded overflow-hidden shadow-lg">
           <img
-            src={blogs[0].image}
+            src={blogs[0 ].image}
             alt={blogs[0].title}
             className="w-full h-[400px] object-cover"
           />
