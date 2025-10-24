@@ -5,12 +5,13 @@ import { AuthContext } from "../../../../Context/AuthContext/AuthContext";
 
 const AddMarathon = () => {
   const { user } = use(AuthContext);
- 
+  
   const [runningDistance, setRunningDistance] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    
     const form = e.target;
     const photo = form.photo.value;
     const name = form.name.value;
